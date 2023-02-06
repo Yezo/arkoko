@@ -3,7 +3,7 @@ import { Tools } from "../components/Tools";
 
 export const TestPage = () => {
   return (
-    <div className="main-page ">
+    <div className="main-page   ">
       <aside className="navigation-wrapper">
         <Navigation></Navigation>
       </aside>
