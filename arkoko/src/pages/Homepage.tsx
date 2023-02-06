@@ -5,12 +5,12 @@ import { TodoList } from "../components/TodoList/TodoList";
 
 export const Homepage = () => {
   return (
-    <main className="main-page">
+    <div className="main-page">
       <aside className="navigation-wrapper">
         <Navigation />
       </aside>
 
-      <body className="body-wrapper">
+      <main className="body-wrapper">
         <div className="grid gap-2 rounded font-primary text-sm lg:grid-cols-4">
           <section className="lg:col-span-2">
             <Introduction />
@@ -24,7 +24,7 @@ export const Homepage = () => {
             <TodoList />
           </section>
         </div>
-      </body>
-    </main>
+      </main>
+    </div>
   );
 };

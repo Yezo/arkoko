@@ -3,16 +3,16 @@ import { Navigation } from "../components/Navbar/Navigation";
 
 export const Marishop = () => {
   return (
-    <main className="main-page">
+    <div className="main-page">
       <aside className="navigation-wrapper">
         <Navigation />
       </aside>
 
-      <body className="body-wrapper">
+      <main className="body-wrapper">
         <div className="body-content-wrapper">
           <Mari />
         </div>
-      </body>
-    </main>
+      </main>
+    </div>
   );
 };
