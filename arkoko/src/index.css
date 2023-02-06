@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .main-page {
+    @apply grid min-h-[100vh] min-w-full grid-cols-[3rem_1fr] bg-primary font-secondary text-text lg:grid-cols-[12%_1fr_12%] 2xl:px-80;
+  }
+
+  .navigation-wrapper {
+    @apply flex flex-col items-center justify-start border-r-[0.1px] border-[#2B313A] pt-10  text-text lg:pt-5;
+  }
+
+  .body-wrapper {
+    @apply bg-primary p-2 text-text  md:border-r-[0.1px] md:border-[#2B313A] lg:p-5;
+  }
+
+  .body-content-wrapper {
+    @apply rounded bg-secondary font-primary text-sm;
+  }
+
+  .table-header {
+    @apply min-w-[5rem] pb-3 md:min-w-[8rem];
+  }
+  .scrollbar {
+    @apply overflow-auto scrollbar-hide;
+  }
+}
+
+@layer base {
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"] {
+    -webkit-appearance: none;
+    margin: 0;
+    -moz-appearance: textfield !important;
+  }
+}
+
+.gutter {
+  scrollbar-gutter: stable both-edges;
+}
