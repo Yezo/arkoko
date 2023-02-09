@@ -192,7 +192,7 @@ export const Mari = () => {
         ></Dropdown>
       </TableNav>
       {error ? (
-        <div>There was an error fetching the data.</div>
+        <div className="py-20">There was an error fetching the data.</div>
       ) : (
         <table className="mt-10 min-w-full max-w-full">
           {/* //? === TABLE: HEADER COLUMNS === */}
