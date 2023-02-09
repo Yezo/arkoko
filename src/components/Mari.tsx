@@ -47,7 +47,7 @@ export const Mari = () => {
   /* -------------------------------------------------------------------------- */
   const gold = "https://www.lostarkmarket.online/assets/icons/gold.png";
   const blue = "https://www.lostarkmarket.online/assets/icons/bluecrystal.png";
-  const localApiURL = `http://localhost:8080/api/marishop`;
+  const localApiURL = `https://arkoko.vercel.app/api/marishop`;
   const blueCrystalURL = `https://www.lostarkmarket.online/api/export-market-live/${region}?category=Currency Exchange`;
   const apiURL = `https://www.lostarkmarket.online/api/export-market-live/${region}?items=honor-shard-pouch-l-3,honor-shard-pouch-s-1,great-honor-leapstone-2,honor-leapstone-2,solar-grace-1,solar-blessing-2,solar-protection-3,basic-oreha-fusion-material-2,simple-oreha-fusion-material-1,superior-oreha-fusion-material-4,crystallized-destruction-stone-0,crystallized-guardian-stone-0,marvelous-honor-leapstone-3`;
 

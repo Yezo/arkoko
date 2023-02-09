@@ -33,7 +33,7 @@ export const Engravings = () => {
   /* -------------------------------------------------------------------------- */
   /*                                  CONSTANTS                                 */
   /* -------------------------------------------------------------------------- */
-  const localApiURL = `http://localhost:8080/api/engravings`;
+  const localApiURL = `https://arkoko.vercel.app/api/engravings`;
 
   /* -------------------------------------------------------------------------- */
   /*                            USE-EFFECT: FETCHING                            */

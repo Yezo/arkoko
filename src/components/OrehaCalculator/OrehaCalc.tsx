@@ -4,14 +4,6 @@ import { OrehaItemRow } from "./OrehaItemRow";
 import { OrehaRecipesRow } from "./OrehaRecipesRow";
 import { OrehaSalesRow } from "./OrehaSalesRow";
 
-//TODO = HTML SEMANTICS + FIX UP CSS
-//TODO = HTML SEMANTICS + FIX UP CSS
-//TODO = HTML SEMANTICS + FIX UP CSS
-//TODO = HTML SEMANTICS + FIX UP CSS
-//TODO = HTML SEMANTICS + FIX UP CSS
-//TODO = HTML SEMANTICS + FIX UP CSS
-//TODO = HTML SEMANTICS + FIX UP CSS
-
 type material = {
   name: string;
   quantity: number;
@@ -75,7 +67,7 @@ export const OrehaCalc = () => {
     useState<number>();
   const [workbenchCount, setWorkbenchCount] = useState<number>();
 
-  const localApiURL = `http://localhost:8080/api/stronghold`;
+  const localApiURL = `https://arkoko.vercel.app/api/stronghold`;
   const baseApiURL = `https://www.lostarkmarket.online/api/export-market-live/North America East?items=`;
   const gold = "https://www.lostarkmarket.online/assets/icons/gold.png";
   const stronghold =
