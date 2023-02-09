@@ -53,7 +53,7 @@ type garbageAPI = {
 };
 export const OrehaCalc = () => {
   /* -------------------------------------------------------------------------- */
-  /*                                   STATES                                   */
+  /*                                   STATES                                    */
   /* -------------------------------------------------------------------------- */
   const [data, setData] = useState<localDataAPI[] | null>();
   const [finalData, setFinalData] = useState<garbageAPI[] | null>();
