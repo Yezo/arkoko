@@ -18,6 +18,6 @@
     "types": ["node"],
     "noImplicitAny": false
   },
-  "include": ["src", "api/index.js"],
+  "include": ["src", "index.js"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

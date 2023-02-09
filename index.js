@@ -3,16 +3,16 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 
-const MariShop = require("../src/models/MariSchema");
-const { getMariShopItems } = require("../src/controllers/GETmariController");
-const Stronghold = require("../src/models/StrongholdSchema");
+const MariShop = require("./src/models/MariSchema");
+const { getMariShopItems } = require("./src/controllers/GETmariController");
+const Stronghold = require("./src/models/StrongholdSchema");
 const {
   getStrongholdItems,
-} = require("../src/controllers/GETstrongholdController");
-const Engraving = require("../src/models/EngravingSchema");
+} = require("./src/controllers/GETstrongholdController");
+const Engraving = require("./src/models/EngravingSchema");
 const {
   getEngravingItems,
-} = require("../src/controllers/GETengravingController");
+} = require("./src/controllers/GETengravingController");
 
 // Middleware
 require("dotenv").config();
