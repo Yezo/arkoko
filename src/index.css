@@ -27,6 +27,7 @@
   }
 }
 
+/* Removes the innate scrollbar on a number input field */
 @layer base {
   input[type="number"]::-webkit-outer-spin-button,
   input[type="number"]::-webkit-inner-spin-button,
@@ -35,8 +36,4 @@
     margin: 0;
     -moz-appearance: textfield !important;
   }
-}
-
-.gutter {
-  scrollbar-gutter: stable both-edges;
 }
