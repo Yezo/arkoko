@@ -47,7 +47,7 @@ export const Mari = () => {
   /* -------------------------------------------------------------------------- */
   const gold = "https://www.lostarkmarket.online/assets/icons/gold.png";
   const blue = "https://www.lostarkmarket.online/assets/icons/bluecrystal.png";
-  const localApiURL = `https://arkoko.vercel.app/api/marishop`;
+  const localApiURL = `https://arkoko-api.onrender.com/api/marishop`;
   const blueCrystalURL = `https://www.lostarkmarket.online/api/export-market-live/${region}?category=Currency Exchange`;
   const apiURL = `https://www.lostarkmarket.online/api/export-market-live/${region}?items=honor-shard-pouch-l-3,honor-shard-pouch-s-1,great-honor-leapstone-2,honor-leapstone-2,solar-grace-1,solar-blessing-2,solar-protection-3,basic-oreha-fusion-material-2,simple-oreha-fusion-material-1,superior-oreha-fusion-material-4,crystallized-destruction-stone-0,crystallized-guardian-stone-0,marvelous-honor-leapstone-3`;
 
@@ -192,7 +192,9 @@ export const Mari = () => {
         ></Dropdown>
       </TableNav>
       {error ? (
-        <div className="py-20">There was an error fetching the data.</div>
+        <div className="flex items-center justify-center py-14">
+          There was an error fetching the data.
+        </div>
       ) : (
         <table className="mt-10 min-w-full max-w-full">
           {/* //? === TABLE: HEADER COLUMNS === */}

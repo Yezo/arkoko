@@ -67,7 +67,7 @@ export const OrehaCalc = () => {
     useState<number>();
   const [workbenchCount, setWorkbenchCount] = useState<number>();
 
-  const localApiURL = `https://arkoko.vercel.app/api/stronghold`;
+  const localApiURL = `https://arkoko-api.onrender.com/api/stronghold`;
   const baseApiURL = `https://www.lostarkmarket.online/api/export-market-live/North America East?items=`;
   const gold = "https://www.lostarkmarket.online/assets/icons/gold.png";
   const stronghold =
