@@ -31,7 +31,7 @@ type dataAPI = {
 export const Mari = () => {
   //States
   const [region, setRegion] = useState("North America East");
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
   const [marketDataAPI, setMarketDataAPI] = useState<marketAPI[] | null>([]);
   const [localDataAPI, setLocalDataAPI] = useState<localAPI[] | null>([]);
