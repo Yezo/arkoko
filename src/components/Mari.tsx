@@ -316,7 +316,11 @@ export const Mari = () => {
                 }
               )}
             </tbody>
-          ) : null}
+          ) : (
+            <div className="flex items-center justify-center py-14">
+              One moment while we fetch the data...
+            </div>
+          )}
         </table>
       )}
     </div>
