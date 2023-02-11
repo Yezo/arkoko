@@ -200,13 +200,13 @@ export const Mari = () => {
         </div>
       )} */}
       {error ? (
-        <div className="grid place-items-center py-14">
+        <div className="grid place-items-center py-40">
           There was an error while fetching the data.
         </div>
       ) : (
         <>
           {isLoading ? (
-            <div className="grid place-items-center py-14">
+            <div className="grid place-items-center py-40">
               One moment while we fetch the data...
             </div>
           ) : localDataAPI && finalData && !error ? (
