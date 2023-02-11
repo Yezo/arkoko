@@ -234,11 +234,93 @@ export const Mari = () => {
               </th>
             </tr>
           </thead>
-          {isLoading && (
+
+          {isLoading ? (
+            <div className="flex items-center justify-center py-14">
+              One moment while we fetch the data...
+            </div>
+          ) : localDataAPI && finalData && !error ? (
+            <tbody className="text-[0.825rem] tracking-tighter ">
+              {finalData.map(
+                ({
+                  name,
+                  id,
+                  image,
+                  bluecrystal,
+                  quantity,
+                  lowPrice,
+                  total,
+                }) => {
+                  return (
+                    <tr key={id} className="p-5 hover:bg-primary">
+                      {/* Item name */}
+                      <TableRow position="justify-start">
+                        <span className="max-w-[35px]">
+                          <img src={image} alt={name} />
+                        </span>
+                        <span className="flex items-center gap-1">
+                          {name}
+                          <span className="text-[0.7rem] text-gray-600 ">
+                            x{quantity}
+                          </span>
+                        </span>
+                      </TableRow>
+
+                      {/* Price */}
+                      <TableRow position="justify-end">
+                        <span className="font-numbers text-[0.9rem] font-medium">
+                          {bluecrystal}
+                        </span>
+                        <img src={blue} alt="blue" className="max-w-[20px]" />
+                      </TableRow>
+
+                      {/* Crystal Value */}
+                      <TableRow position="justify-end">
+                        <span className="font-numbers text-[0.9rem] font-medium">
+                          {new Intl.NumberFormat().format(
+                            convertBlueCrystalToGold(bluecrystal)
+                          )}
+                        </span>
+                        <img src={gold} alt="gold" className="max-w-[25px]" />
+                      </TableRow>
+
+                      {/* Market Price */}
+                      <TableRow position="justify-end">
+                        <span className="font-numbers text-[0.9rem] font-medium">
+                          {new Intl.NumberFormat().format(total)}
+                        </span>
+                        <img src={gold} alt="gold" className="max-w-[25px]" />
+                      </TableRow>
+
+                      {/* Buy from Mari or Market */}
+                      <TableRow position="justify-center">
+                        <button
+                          className={`min-w-[5.5rem] rounded bg-primary px-3 py-1 font-bold ring-1 ring-black/[.25] ${
+                            compareBothValues(
+                              convertBlueCrystalToGold(bluecrystal),
+                              lowPrice * quantity
+                            ) === "MARKET"
+                              ? "bg-green-800"
+                              : "bg-red-900"
+                          }`}
+                        >
+                          {compareBothValues(
+                            convertBlueCrystalToGold(bluecrystal),
+                            lowPrice * quantity
+                          )}
+                        </button>
+                      </TableRow>
+                    </tr>
+                  );
+                }
+              )}
+            </tbody>
+          ) : (
             <div className="flex items-center justify-center py-14">
               One moment while we fetch the data...
             </div>
           )}
+
           {/* //? === TABLE: TABLE BODY CONTENTS === */}
           {localDataAPI && finalData && !error ? (
             <tbody className="text-[0.825rem] tracking-tighter ">
