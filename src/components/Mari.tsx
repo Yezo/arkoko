@@ -31,7 +31,7 @@ type dataAPI = {
 export const Mari = () => {
   //States
   const [region, setRegion] = useState("North America East");
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
   const [marketDataAPI, setMarketDataAPI] = useState<marketAPI[] | null>([]);
   const [localDataAPI, setLocalDataAPI] = useState<localAPI[] | null>([]);
@@ -236,7 +236,7 @@ export const Mari = () => {
           </thead>
 
           {isLoading ? (
-            <div className="flex w-full items-center justify-center py-14">
+            <div className="grid place-items-center py-14">
               One moment while we fetch the data...
             </div>
           ) : localDataAPI && finalData && !error ? (

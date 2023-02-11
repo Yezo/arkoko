@@ -233,7 +233,231 @@ export const OrehaCalc = () => {
           maxChar={1}
         />
       </div>
-      <div className="flex gap-4  ">
+
+      {isLoading && (
+        <div className="grid place-items-center py-14">
+          One moment while we fetch the data...
+        </div>
+      )}
+      {error ? (
+        <div className="grid place-items-center py-14">
+          There was an error while fetching the data.
+        </div>
+      ) : (
+        <div className="flex gap-4">
+          {data &&
+            extData &&
+            finalData &&
+            !error &&
+            finalData.map(
+              ({
+                name,
+                quantity,
+                id,
+                imgURL,
+                craftingCost,
+                craftingTime,
+                materialOne,
+                materialTwo,
+                materialThree,
+                matOneCost,
+                matTwoCost,
+                matThreeCost,
+                strongholdEnergy,
+                lowPrice,
+                strongholdXP,
+              }) => {
+                return (
+                  <div className=" basis-1/2 rounded tracking-tighter" key={id}>
+                    <div className="flex flex-col gap-2">
+                      {/* -------------------------------------------------------------------------- */
+                      /*                            FIRST SECTION: ITEM
+                       */
+                      /* -------------------------------------------------------------------------- */}
+                      <section className=" flex flex-col gap-[0.35rem] rounded bg-primary p-5 ring-1 ring-black/[.50]">
+                        <div className="flex items-center justify-center">
+                          <img
+                            src={imgURL}
+                            className="max-h-[40px] max-w-[50px]"
+                          />
+                        </div>
+                        <div className="flex items-center justify-between">
+                          <div className=" mb-2 border-l-4 border-l-blue-800 py-[0.15rem] pl-2 text-[1rem] font-bold">
+                            {name}
+                          </div>
+                        </div>
+
+                        <OrehaItemRow title="Quantity">
+                          {quantity} unit(s)
+                        </OrehaItemRow>
+
+                        <OrehaItemRow title="Craft Time">
+                          {handleCraftingTimeReduction(craftingTime)} min(s)
+                        </OrehaItemRow>
+
+                        <OrehaItemRow
+                          title="Stronghold EXP"
+                          imgURL={exp}
+                          imgAlt="Stronghold EXP Icon"
+                        >
+                          {strongholdXP}
+                        </OrehaItemRow>
+
+                        <OrehaItemRow
+                          title="Energy Cost"
+                          imgURL={stronghold}
+                          imgAlt="Stronghold Energy Icon"
+                        >
+                          {handleEnergyConsumptionReduction(strongholdEnergy)}
+                        </OrehaItemRow>
+
+                        <OrehaItemRow
+                          title="Cost per Unit"
+                          imgURL={gold}
+                          imgAlt="gold"
+                        >
+                          {lowPrice}
+                        </OrehaItemRow>
+                      </section>
+
+                      {/* -------------------------------------------------------------------------- */
+                      /*                            SECOND SECTION: RECIPE                            */
+                      /* -------------------------------------------------------------------------- */}
+                      <section className=" flex flex-col gap-[0.35rem] rounded bg-primary p-5 ring-1 ring-black/[.50]">
+                        <div className="flex items-center justify-between">
+                          <div className=" mb-2 border-l-4 border-l-orange-800 py-[0.15rem] pl-2 text-[1rem] font-bold">
+                            Recipe
+                          </div>
+                        </div>
+
+                        {/* Main Recipe Item */}
+                        <OrehaRecipesRow
+                          imgURL={imgURL}
+                          name={name}
+                          quantity={quantity}
+                          cost={Math.ceil(lowPrice * quantity)}
+                          gold={gold}
+                        ></OrehaRecipesRow>
+
+                        {/* Material One */}
+                        <OrehaRecipesRow
+                          imgURL={materialOne.imgURL}
+                          name={materialOne.name}
+                          quantity={materialOne.quantity}
+                          cost={matOneCost}
+                          gold={gold}
+                        ></OrehaRecipesRow>
+
+                        {/* Material Two */}
+                        <OrehaRecipesRow
+                          imgURL={materialTwo.imgURL}
+                          name={materialTwo.name}
+                          quantity={materialTwo.quantity}
+                          cost={matTwoCost}
+                          gold={gold}
+                        ></OrehaRecipesRow>
+
+                        {/* Material Three */}
+                        <OrehaRecipesRow
+                          imgURL={materialThree.imgURL}
+                          name={materialThree.name}
+                          quantity={materialThree.quantity}
+                          cost={matThreeCost}
+                          gold={gold}
+                        ></OrehaRecipesRow>
+                      </section>
+                      {/* -------------------------------------------------------------------------- */
+                      /*                            THIRD SECTION: SALES                            */
+                      /* -------------------------------------------------------------------------- */}
+                      <section className=" flex flex-col gap-[0.35rem] rounded bg-primary p-5 ring-1 ring-black/[.50]">
+                        <div className="flex items-center justify-between">
+                          <div className=" mb-2 border-l-4 border-l-red-700 py-[0.15rem] pl-2 text-[1rem] font-bold">
+                            Sales
+                          </div>
+                        </div>
+
+                        {/* Material Fee */}
+                        <OrehaSalesRow title="Material Fee ">
+                          {Math.ceil(matOneCost + matTwoCost + matThreeCost)}
+                          <img src={gold} alt="gold" className="max-h-[20px]" />
+                        </OrehaSalesRow>
+
+                        {/* Crafting Fee */}
+                        <OrehaSalesRow title="Crafting Fee">
+                          {handleCraftingCostReduction(craftingCost)}
+                          <img src={gold} alt="gold" className="max-h-[20px]" />
+                        </OrehaSalesRow>
+
+                        {/* Market Fee */}
+                        <OrehaSalesRow title="Market Fee">
+                          {Math.ceil(lowPrice * quantity * 0.05)}
+                          <img src={gold} alt="gold" className="max-h-[20px]" />
+                        </OrehaSalesRow>
+
+                        {/* Total Cost */}
+                        <OrehaSalesRow title="Total Cost">
+                          {Math.ceil(
+                            matOneCost +
+                              matTwoCost +
+                              matThreeCost +
+                              handleCraftingCostReduction(craftingCost) +
+                              lowPrice * quantity * 0.05
+                          )}
+                          <img src={gold} alt="gold" className="max-h-[20px]" />
+                        </OrehaSalesRow>
+
+                        {/* Total Profit */}
+                        <OrehaSalesRow title="Total Profit">
+                          <span
+                            className={`font-bold ${
+                              Math.ceil(
+                                lowPrice * quantity -
+                                  (matOneCost +
+                                    matTwoCost +
+                                    matThreeCost +
+                                    handleCraftingCostReduction(craftingCost) +
+                                    lowPrice * quantity * 0.05)
+                              ) >= 0
+                                ? "text-green-600"
+                                : "text-red-800"
+                            }`}
+                          >
+                            {workbenchCount
+                              ? Math.ceil(
+                                  handleWorkbenchCount(
+                                    lowPrice * quantity -
+                                      (matOneCost +
+                                        matTwoCost +
+                                        matThreeCost +
+                                        handleCraftingCostReduction(
+                                          craftingCost
+                                        ) +
+                                        lowPrice * quantity * 0.05)
+                                  )
+                                )
+                              : Math.ceil(
+                                  lowPrice * quantity -
+                                    (matOneCost +
+                                      matTwoCost +
+                                      matThreeCost +
+                                      handleCraftingCostReduction(
+                                        craftingCost
+                                      ) +
+                                      lowPrice * quantity * 0.05)
+                                )}
+                          </span>
+                          <img src={gold} alt="gold" className="max-h-[20px]" />
+                        </OrehaSalesRow>
+                      </section>
+                    </div>
+                  </div>
+                );
+              }
+            )}
+        </div>
+      )}
+
+      <div className="flex gap-4">
         {finalData &&
           finalData.map(
             ({
