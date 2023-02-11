@@ -234,9 +234,13 @@ export const Mari = () => {
               </th>
             </tr>
           </thead>
-
+          {isLoading && (
+            <div className="flex items-center justify-center py-14">
+              One moment while we fetch the data...
+            </div>
+          )}
           {/* //? === TABLE: TABLE BODY CONTENTS === */}
-          {finalData && !error ? (
+          {localDataAPI && finalData && !error ? (
             <tbody className="text-[0.825rem] tracking-tighter ">
               {finalData.map(
                 ({
