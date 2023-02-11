@@ -194,11 +194,11 @@ export const Mari = () => {
 
       {/* NEW CODE */}
 
-      {isLoading && (
+      {/* {isLoading && (
         <div className="grid place-items-center py-14">
           One moment while we fetch the data...
         </div>
-      )}
+      )} */}
       {error ? (
         <div className="grid place-items-center py-14">
           There was an error while fetching the data.
@@ -242,7 +242,11 @@ export const Mari = () => {
             </tr>
           </thead>
 
-          {localDataAPI && finalData && !error ? (
+          {isLoading ? (
+            <div className="grid place-items-center py-14">
+              One moment while we fetch the data...
+            </div>
+          ) : localDataAPI && finalData && !error ? (
             <tbody className="text-[0.825rem] tracking-tighter ">
               {finalData.map(
                 ({
