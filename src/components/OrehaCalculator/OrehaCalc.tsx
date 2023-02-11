@@ -207,6 +207,11 @@ export const OrehaCalc = () => {
   // data && extData && calcTotalCost(data, extData);
   return (
     <div>
+      {error && (
+        <div className="flex items-center justify-center py-14">
+          There was an error fetching the data.
+        </div>
+      )}
       <div className="mb-3 flex gap-4">
         <OrehaInput
           title="Crafting Cost Reduction"
