@@ -242,11 +242,7 @@ export const Mari = () => {
             </tr>
           </thead>
 
-          {isLoading ? (
-            <div className="grid place-items-center py-14">
-              One moment while we fetch the data...
-            </div>
-          ) : localDataAPI && finalData && !error ? (
+          {localDataAPI && finalData && !error ? (
             <tbody className="text-[0.825rem] tracking-tighter ">
               {finalData.map(
                 ({
