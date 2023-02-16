@@ -167,7 +167,7 @@ export const Mari = () => {
     <div className="max-w-full p-3 md:p-5">
       <TableNav title="Mari's Shop">
         <div className="rounded bg-primary px-3 py-2 ring-1 ring-black/[.40]">
-          <span className="flex items-center gap-2">
+          <span className="flex items-center justify-center  gap-2">
             <span className="flex items-center font-numbers text-[0.9rem] font-medium">
               95
               <img src={blue} alt="blue crystal" className="mb-[0.15rem] w-4" />
@@ -192,13 +192,6 @@ export const Mari = () => {
         ></Dropdown>
       </TableNav>
 
-      {/* NEW CODE */}
-
-      {/* {isLoading && (
-        <div className="grid place-items-center py-14">
-          One moment while we fetch the data...
-        </div>
-      )} */}
       {error ? (
         <div className="grid place-items-center py-40">
           There was an error while fetching the data.

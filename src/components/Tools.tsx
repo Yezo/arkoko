@@ -5,7 +5,7 @@ import { RaidBidCalc } from "./RaidBidCalculator/RaidBidCalc";
 import { TableNav } from "./TableNav";
 
 export const Tools = () => {
-  const [category, setCategory] = useState<string>("Oreha Calc");
+  const [category, setCategory] = useState<string>("Auction Bid Calc");
 
   return (
     <div className="flex max-w-full flex-col gap-5 p-3 md:p-5">

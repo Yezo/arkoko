@@ -37,3 +37,9 @@
     -moz-appearance: textfield !important;
   }
 }
+
+/* Prevents scrollbar from pushing content to the left */
+html {
+  width: 100vw;
+  overflow-x: hidden;
+}

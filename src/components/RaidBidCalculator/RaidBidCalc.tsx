@@ -146,8 +146,6 @@ export const RaidBidCalc = () => {
     return 0;
   }
 
-  //TODO
-
   return (
     <div>
       <div className="flex ">
