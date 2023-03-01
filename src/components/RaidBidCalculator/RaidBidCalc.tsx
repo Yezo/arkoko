@@ -11,7 +11,7 @@ export const RaidBidCalc = () => {
   const [seventySplit, setSeventySplit] = useState<number>(0);
   const [cutoffSplit, setCutoffSplit] = useState<number>(0);
   const buttonClass =
-    "flex items-center justify-center px-3 py-1 ring-1 ring-black/[.50] bg-primary rounded w-full text-[0.8rem] font-bold transition-all focus:ring-2 focus:ring-black/[0.6]";
+    "flex items-center justify-center px-3 py-1 ring-1 ring-black/[.50] bg-primary rounded w-full text-[0.8rem] font-bold transition-all focus:ring-2 focus:ring-black/[0.6] min-w-[3rem]";
 
   /* -------------------------------------------------------------------------- */
   /*                              HELPER FUNCTIONS                              */
@@ -150,7 +150,7 @@ export const RaidBidCalc = () => {
     <div>
       <div className="flex ">
         {/* LEFT SIDE */}
-        <div className="flex w-full basis-1/2 flex-col justify-center pr-4">
+        <div className="flex w-full flex-col justify-center pr-4">
           <div className="mb-4 flex flex-col justify-center gap-2">
             <h2 className="text-[0.85rem] font-bold tracking-wide">
               Number of Players
@@ -194,7 +194,7 @@ export const RaidBidCalc = () => {
 
         {/* RIGHT SIDE */}
 
-        <div className="w-full basis-1/2  px-14">
+        <div className="w-full px-4 md:px-14">
           <div className="flex justify-end border-b border-text/[.05] p-1.5">
             <div className="flex basis-1/3 items-center justify-center font-bold  uppercase tracking-tighter">
               <div>Bid</div>

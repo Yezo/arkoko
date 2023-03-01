@@ -207,7 +207,7 @@ export const OrehaCalc = () => {
   // data && extData && calcTotalCost(data, extData);
   return (
     <div>
-      <div className="mb-3 flex gap-4">
+      <div className="mb-3 flex flex-col gap-4 lg:flex-row">
         <OrehaInput
           title="Crafting Cost Reduction"
           setter={setCraftingCostReduction}
@@ -244,7 +244,7 @@ export const OrehaCalc = () => {
           There was an error while fetching the data.
         </div>
       ) : (
-        <div className="flex gap-4">
+        <div className="flex flex-col gap-4 md:flex-row">
           {data &&
             extData &&
             finalData &&
