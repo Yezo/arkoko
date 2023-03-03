@@ -1,13 +1,13 @@
-import { useState } from "react";
+import { useState } from "react"
 
-interface Props {
-  setter: React.Dispatch<React.SetStateAction<string>>;
-  options: string[];
-  placeholder: string;
+type Props = {
+  setter: React.Dispatch<React.SetStateAction<string>>
+  options: string[]
+  placeholder: string
 }
 
 export const Dropdown = ({ options, setter, placeholder }: Props) => {
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false)
   return (
     <div>
       <button
@@ -55,8 +55,8 @@ export const Dropdown = ({ options, setter, placeholder }: Props) => {
             {options.map((option) => (
               <div
                 onClick={() => {
-                  setIsExpanded(false);
-                  setter(option);
+                  setIsExpanded(false)
+                  setter(option)
                 }}
                 className="px-3 py-2 transition-all hover:bg-text hover:text-primary"
                 key={option}
@@ -68,5 +68,5 @@ export const Dropdown = ({ options, setter, placeholder }: Props) => {
         </div>
       )}
     </div>
-  );
-};
+  )
+}

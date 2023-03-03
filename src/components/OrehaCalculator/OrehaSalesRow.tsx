@@ -1,7 +1,7 @@
 type Props = {
-  title: string;
-  children?: React.ReactNode;
-};
+  title: string
+  children?: React.ReactNode
+}
 
 export const OrehaSalesRow = ({ title, children }: Props) => {
   return (
@@ -14,5 +14,5 @@ export const OrehaSalesRow = ({ title, children }: Props) => {
         {children}
       </div>
     </div>
-  );
-};
+  )
+}

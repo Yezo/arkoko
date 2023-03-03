@@ -1,22 +1,12 @@
 type Props = {
-  title?: string;
-  children?: React.ReactNode;
-  imgURL: string;
-  name: string;
-  quantity: number;
-  cost: number;
-  gold: string;
-};
+  imgURL: string
+  name: string
+  quantity: number
+  cost: number
+  gold: string
+}
 
-export const OrehaRecipesRow = ({
-  imgURL,
-  name,
-  quantity,
-  cost,
-  gold,
-  title,
-  children,
-}: Props) => {
+export const OrehaRecipesRow = ({ imgURL, name, quantity, cost, gold }: Props) => {
   return (
     <div className="flex items-center justify-between gap-[0.15rem]">
       <div className="flex items-center gap-1">
@@ -27,11 +17,9 @@ export const OrehaRecipesRow = ({
       </div>
 
       <div className="flex items-center gap-[0.15rem] font-bold">
-        <span className="font-numbers text-[0.9rem] font-medium ">
-          {Math.ceil(cost)}
-        </span>
+        <span className="font-numbers text-[0.9rem] font-medium ">{Math.ceil(cost)}</span>
         <img src={gold} alt="gold" className="max-h-[20px]" />
       </div>
     </div>
-  );
-};
+  )
+}

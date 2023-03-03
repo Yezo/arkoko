@@ -1,28 +1,13 @@
-import React from "react";
-type engravingType = {
-  engraving: string;
-  imageURL: string;
-  levelOne: string;
-  levelTwo: string;
-  levelThree: string;
-  isClassEngraving: boolean;
-  belongsToClass?: string;
-  _id: string;
-};
+import { engravingType } from "../../types/typeEngraving"
 
 type Props = {
-  engravingData?: engravingType[];
-  handleButtonClick: (e: React.MouseEvent<HTMLDivElement>) => void;
-  filterBool: boolean;
-  category: string;
-};
+  engravingData?: engravingType[]
+  handleButtonClick: (e: React.MouseEvent<HTMLDivElement>) => void
+  filterBool: boolean
+  category: string
+}
 
-export const ModalButton = ({
-  engravingData,
-  handleButtonClick,
-  filterBool,
-  category,
-}: Props) => {
+export const ModalButton = ({ engravingData, handleButtonClick, filterBool, category }: Props) => {
   return (
     <div className="flex flex-col gap-2">
       <h2 className="border-b-[1px] border-gray-700 pb-2 text-[0.85rem] font-bold tracking-wide">
@@ -64,19 +49,16 @@ export const ModalButton = ({
                     >
                       {engraving}
                       {belongsToClass && (
-                        <div
-                          className="text-[0.65rem] italic text-slate-500"
-                          id={engraving}
-                        >
+                        <div className="text-[0.65rem] italic text-slate-500" id={engraving}>
                           {belongsToClass}
                         </div>
                       )}
                     </div>
                   </div>
-                );
+                )
               })
           : null}
       </div>
     </div>
-  );
-};
+  )
+}

@@ -2,31 +2,14 @@ import { useState, useEffect } from "react"
 import { Dropdown } from "./Dropdown"
 import { TableNav } from "./TableNav"
 import { TableRow } from "./TableRow"
-
-type marketAPI = {
-  name: string
-  quantity: number
-  id: string
-  gameCode: number | string
-  image: string
-  lowPrice: number
-}
-
-type localAPI = {
-  name: string
-  bluecrystal: number
-  quantity: number
-}
-type dataAPI = {
-  name: string
-  bluecrystal: number
-  quantity: number
-  id: string
-  gameCode: number | string
-  image: string
-  lowPrice: number
-  total: number
-}
+import { marketAPI, localAPI, dataAPI } from "../types/typeMariShop"
+import {
+  generateCrystal,
+  convertBlueCrystalToGold,
+  handleSortArray,
+  mergeById,
+  compareBothValues,
+} from "../helpers/helpers"
 
 export const Mari = () => {
   //States
@@ -42,42 +25,12 @@ export const Mari = () => {
     ascending: true,
   })
 
-  /* -------------------------------------------------------------------------- */
-  /*                                  Constants                                 */
-  /* -------------------------------------------------------------------------- */
-  const gold = "https://www.lostarkmarket.online/assets/icons/gold.png"
-  const blue = "https://www.lostarkmarket.online/assets/icons/bluecrystal.png"
+  //Constants
+  const gold = "/gold.png"
+  const blue = "/bluecrystal.png"
   const localApiURL = `https://arkoko-api.onrender.com/api/marishop`
   const blueCrystalURL = `https://www.lostarkmarket.online/api/export-market-live/${region}?category=Currency Exchange`
   const apiURL = `https://www.lostarkmarket.online/api/export-market-live/${region}?items=honor-shard-pouch-l-3,honor-shard-pouch-s-1,great-honor-leapstone-2,honor-leapstone-2,solar-grace-1,solar-blessing-2,solar-protection-3,basic-oreha-fusion-material-2,simple-oreha-fusion-material-1,superior-oreha-fusion-material-4,crystallized-destruction-stone-0,crystallized-guardian-stone-0,marvelous-honor-leapstone-3`
-
-  /* -------------------------------------------------------------------------- */
-  /*                              Helper functions                              */
-  /* -------------------------------------------------------------------------- */
-
-  function generateCrystal(value: number) {
-    return Math.round(value * 95)
-  }
-
-  function convertBlueCrystalToGold(amount: number) {
-    return Math.ceil((amount / 95) * crystal)
-  }
-
-  //Sort an array by its game code
-  const handleSortArray = (arr: marketAPI[]) =>
-    arr.sort((a: { gameCode: any }, b: { gameCode: any }) => a.gameCode - b.gameCode)
-
-  //Merging two objects
-  const mergeById = (localData, externalData) =>
-    externalData.map((itm: { name: any }) => ({
-      ...localData.find((item: { name: any }) => item.name === itm.name && item),
-      ...itm,
-    }))
-
-  //Determine if you should buy from the Mari's Shop or from the Marketplace
-  const compareBothValues = (a: number, b: number) => {
-    return a >= b ? "MARKET" : "MARI"
-  }
 
   useEffect(() => {
     const controller = new AbortController()
@@ -261,7 +214,9 @@ export const Mari = () => {
                       {/* Crystal Value */}
                       <TableRow position="justify-end">
                         <span className="font-numbers text-[0.9rem] font-medium">
-                          {new Intl.NumberFormat().format(convertBlueCrystalToGold(bluecrystal))}
+                          {new Intl.NumberFormat().format(
+                            convertBlueCrystalToGold(bluecrystal, crystal)
+                          )}
                         </span>
                         <img src={gold} alt="gold" className="max-w-[25px]" />
                       </TableRow>
@@ -279,7 +234,7 @@ export const Mari = () => {
                         <button
                           className={`min-w-[5.5rem] rounded bg-primary px-3 py-1 font-bold ring-1 ring-black/[.25] ${
                             compareBothValues(
-                              convertBlueCrystalToGold(bluecrystal),
+                              convertBlueCrystalToGold(bluecrystal, crystal),
                               lowPrice * quantity
                             ) === "MARKET"
                               ? "bg-green-800"
@@ -287,7 +242,7 @@ export const Mari = () => {
                           }`}
                         >
                           {compareBothValues(
-                            convertBlueCrystalToGold(bluecrystal),
+                            convertBlueCrystalToGold(bluecrystal, crystal),
                             lowPrice * quantity
                           )}
                         </button>

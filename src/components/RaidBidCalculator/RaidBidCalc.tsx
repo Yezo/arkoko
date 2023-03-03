@@ -1,149 +1,118 @@
-import { useState, useEffect } from "react";
-import { RaidBidRow } from "./RaidBidRow";
+import { useState, useEffect } from "react"
+import { RaidBidRow } from "./RaidBidRow"
 
 export const RaidBidCalc = () => {
-  const gold = "https://www.lostarkmarket.online/assets/icons/gold.png";
-  const [value, setValue] = useState<number>(0);
-  const [players, setPlayers] = useState<number>(8);
-  const [evenSplit, setEvenSplit] = useState<number>(0);
-  const [quarterSplit, setQuarterSplit] = useState<number>(0);
-  const [halfSplit, setHalfSplit] = useState<number>(0);
-  const [seventySplit, setSeventySplit] = useState<number>(0);
-  const [cutoffSplit, setCutoffSplit] = useState<number>(0);
+  const gold = "/gold.png"
+  const [value, setValue] = useState<number>(0)
+  const [players, setPlayers] = useState<number>(8)
+  const [evenSplit, setEvenSplit] = useState<number>(0)
+  const [quarterSplit, setQuarterSplit] = useState<number>(0)
+  const [halfSplit, setHalfSplit] = useState<number>(0)
+  const [seventySplit, setSeventySplit] = useState<number>(0)
+  const [cutoffSplit, setCutoffSplit] = useState<number>(0)
   const buttonClass =
-    "flex items-center justify-center px-3 py-1 ring-1 ring-black/[.50] bg-primary rounded w-full text-[0.8rem] font-bold transition-all focus:ring-2 focus:ring-black/[0.6] min-w-[3rem]";
+    "flex items-center justify-center px-3 py-1 ring-1 ring-black/[.50] bg-primary rounded w-full text-[0.8rem] font-bold transition-all focus:ring-2 focus:ring-black/[0.6] min-w-[3rem]"
 
   /* -------------------------------------------------------------------------- */
   /*                              HELPER FUNCTIONS                              */
   /* -------------------------------------------------------------------------- */
-  //!Handle the amount of profit the user wishes to get from the auction bid
+  //Handle the amount of profit the user wishes to get from the auction bid
   function handleValue(e: any) {
-    const val = e.target.value;
-    setValue(parseInt(val));
+    const val = e.target.value
+    setValue(parseInt(val))
   }
 
-  //!Value after tax is 0.95% of the original value. 95/4 = each person max can get 23.75%, so one person needs to bid 23.753 = 71.25% of the item's value. This is the max where everyone gets equal value, because if you bid more than 71.25%, you lose money. For 8 people, the same expression results in an 83.125% bid.
-
+  //Value after tax is 0.95% of the original value. 95/4 = each person max can get 23.75%, so one person needs to bid 23.753 = 71.25% of the item's value. This is the max where everyone gets equal value, because if you bid more than 71.25%, you lose money. For 8 people, the same expression results in an 83.125% bid.
   useEffect(() => {
     players === 8
       ? setEvenSplit(
           Math.floor(
-            value -
-              handleEvenSplit(value) -
-              (value - value * 0.95) -
-              handleEvenSplit(value) / 7
+            value - handleEvenSplit(value) - (value - value * 0.95) - handleEvenSplit(value) / 7
           )
         )
       : setEvenSplit(
           Math.floor(
-            value -
-              handleEvenSplit(value) -
-              (value - value * 0.95) -
-              handleEvenSplit(value) / 3
+            value - handleEvenSplit(value) - (value - value * 0.95) - handleEvenSplit(value) / 3
           )
-        );
+        )
 
     players === 8
       ? setQuarterSplit(
           Math.floor(
-            value -
-              handle25Split(value) -
-              (value - value * 0.95) -
-              handle25Split(value) / 7
+            value - handle25Split(value) - (value - value * 0.95) - handle25Split(value) / 7
           )
         )
       : setQuarterSplit(
           Math.floor(
-            value -
-              handle25Split(value) -
-              (value - value * 0.95) -
-              handle25Split(value) / 3
+            value - handle25Split(value) - (value - value * 0.95) - handle25Split(value) / 3
           )
-        );
+        )
 
     players === 8
       ? setHalfSplit(
           Math.floor(
-            value -
-              handle50Split(value) -
-              (value - value * 0.95) -
-              handle50Split(value) / 7
+            value - handle50Split(value) - (value - value * 0.95) - handle50Split(value) / 7
           )
         )
       : setHalfSplit(
           Math.floor(
-            value -
-              handle50Split(value) -
-              (value - value * 0.95) -
-              handle50Split(value) / 3
+            value - handle50Split(value) - (value - value * 0.95) - handle50Split(value) / 3
           )
-        );
+        )
 
     players === 8
       ? setSeventySplit(
           Math.floor(
-            value -
-              handle75Split(value) -
-              (value - value * 0.95) -
-              handle75Split(value) / 7
+            value - handle75Split(value) - (value - value * 0.95) - handle75Split(value) / 7
           )
         )
       : setSeventySplit(
           Math.floor(
-            value -
-              handle75Split(value) -
-              (value - value * 0.95) -
-              handle75Split(value) / 3
+            value - handle75Split(value) - (value - value * 0.95) - handle75Split(value) / 3
           )
-        );
+        )
 
     players === 8
       ? setCutoffSplit(
           Math.floor(
-            value -
-              handleCutoffSplit(value) -
-              (value - value * 0.95) -
-              handleCutoffSplit(value) / 7
+            value - handleCutoffSplit(value) - (value - value * 0.95) - handleCutoffSplit(value) / 7
           )
         )
       : setCutoffSplit(
           Math.floor(
-            value -
-              handleCutoffSplit(value) -
-              (value - value * 0.95) -
-              handleCutoffSplit(value) / 3
+            value - handleCutoffSplit(value) - (value - value * 0.95) - handleCutoffSplit(value) / 3
           )
-        );
-  }, [value, players, handle25Split, handleEvenSplit, handle50Split]);
+        )
+  }, [value, players, handle25Split, handleEvenSplit, handle50Split])
 
   function handleEvenSplit(num: number): number {
-    if (num && players === 8) return Math.floor(num * 0.83125);
-    if (num && players === 4) return Math.floor(num * 0.7125);
-    return 0;
+    if (num && players === 8) return Math.floor(num * 0.83125)
+    if (num && players === 4) return Math.floor(num * 0.7125)
+    return 0
   }
 
   function handle25Split(num: number): number {
-    if (players === 8) return Math.floor(num * 0.811);
-    if (players === 4) return Math.floor(num * 0.6952);
-    return 0;
+    if (players === 8) return Math.floor(num * 0.811)
+    if (players === 4) return Math.floor(num * 0.6952)
+    return 0
   }
 
   function handle50Split(num: number): number {
-    if (players === 8) return Math.floor(num * 0.7916);
-    if (players === 4) return Math.floor(num * 0.6786);
-    return 0;
+    if (players === 8) return Math.floor(num * 0.7916)
+    if (players === 4) return Math.floor(num * 0.6786)
+    return 0
   }
 
   function handle75Split(num: number): number {
-    if (players === 8) return Math.floor(num * 0.7732);
-    if (players === 4) return Math.floor(num * 0.6628);
-    return 0;
+    if (players === 8) return Math.floor(num * 0.7732)
+    if (players === 4) return Math.floor(num * 0.6628)
+    return 0
   }
 
   function handleCutoffSplit(num: number): number {
-    if (players === 8) return Math.floor(num * 0.7556);
-    if (players === 4) return Math.floor(num * 0.6478);
-    return 0;
+    if (players === 8) return Math.floor(num * 0.7556)
+    if (players === 4) return Math.floor(num * 0.6478)
+    return 0
   }
 
   return (
@@ -152,22 +121,16 @@ export const RaidBidCalc = () => {
         {/* LEFT SIDE */}
         <div className="flex w-full flex-col justify-center pr-4">
           <div className="mb-4 flex flex-col justify-center gap-2">
-            <h2 className="text-[0.85rem] font-bold tracking-wide">
-              Number of Players
-            </h2>
+            <h2 className="text-[0.85rem] font-bold tracking-wide">Number of Players</h2>
             <span className="flex gap-2">
               <button
-                className={`${buttonClass} ${
-                  players === 4 ? "bg-text text-primary" : null
-                }`}
+                className={`${buttonClass} ${players === 4 ? "bg-text text-primary" : null}`}
                 onClick={() => setPlayers(4)}
               >
                 4
               </button>
               <button
-                className={`${buttonClass} ${
-                  players === 8 ? "bg-text text-primary" : null
-                } `}
+                className={`${buttonClass} ${players === 8 ? "bg-text text-primary" : null} `}
                 onClick={() => setPlayers(8)}
               >
                 8
@@ -175,10 +138,7 @@ export const RaidBidCalc = () => {
             </span>
           </div>
           <div className="mb-2 flex flex-col justify-center gap-2">
-            <label
-              htmlFor="num"
-              className="text-[0.85rem] font-bold tracking-normal"
-            >
+            <label htmlFor="num" className="text-[0.85rem] font-bold tracking-normal">
               Auction House Price
             </label>
             <input
@@ -250,5 +210,5 @@ export const RaidBidCalc = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}

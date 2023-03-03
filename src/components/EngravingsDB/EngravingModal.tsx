@@ -1,21 +1,12 @@
-type engravingType = {
-  engraving: string;
-  imageURL: string;
-  levelOne: string;
-  levelTwo: string;
-  levelThree: string;
-  isClassEngraving: boolean;
-  belongsToClass?: string;
-  _id: string;
-};
+import { engravingType } from "../../types/typeEngraving"
 
 type Props = {
-  engravingData?: engravingType[] | null;
-  modal: string | null;
-};
+  engravingData?: engravingType[] | null
+  modal: string | null
+}
 
 export const EngravingModal = ({ engravingData, modal }: Props) => {
-  let ENGRAVING = engravingData?.find((item) => item.engraving === modal);
+  let ENGRAVING = engravingData?.find((item) => item.engraving === modal)
   return (
     <>
       {ENGRAVING && (
@@ -65,5 +56,5 @@ export const EngravingModal = ({ engravingData, modal }: Props) => {
         </div>
       )}
     </>
-  );
-};
+  )
+}

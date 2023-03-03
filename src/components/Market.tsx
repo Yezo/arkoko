@@ -1,28 +1,13 @@
 import { useState, useEffect } from "react"
-import { Dropdown } from "./Dropdown"
 import { Sparklines, SparklinesLine } from "react-sparklines"
+import { Dropdown } from "./Dropdown"
 import { TableNav } from "./TableNav"
 import { TableRow } from "./TableRow"
-
-/* -------------------------------------------------------------------------- */
-/*                                    TYPES                                   */
-/* -------------------------------------------------------------------------- */
-type marketAPI = {
-  name: string
-  quantity: number
-  id: string
-  gameCode: number | string
-  image: string
-  lowPrice: number
-  cheapestRemaining: number
-  recentPrice: number
-  shortHistoric: unknown
-}
+import { marketAPI } from "../types/typeMarketAPI"
+import { sorted } from "../helpers/helpers"
 
 export const Market = () => {
-  /* -------------------------------------------------------------------------- */
-  /*                                   STATES                                   */
-  /* -------------------------------------------------------------------------- */
+  //States
   const [data, setData] = useState<marketAPI[] | null>(null)
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [error, setError] = useState<boolean>(false)
@@ -33,15 +18,11 @@ export const Market = () => {
     ascending: true,
   })
 
-  /* -------------------------------------------------------------------------- */
-  /*                                  CONSTANTS                                 */
-  /* -------------------------------------------------------------------------- */
-  const gold = "https://www.lostarkmarket.online/assets/icons/gold.png"
+  //Constants
+  const gold = "/gold.png"
   const marketURL = `https://www.lostarkmarket.online/api/export-market-live/${region}?category=${dropdown}`
 
-  /* -------------------------------------------------------------------------- */
-  /*                             USEEFFECT: FETCHING                            */
-  /* -------------------------------------------------------------------------- */
+  //Fetching data
   useEffect(() => {
     const controller = new AbortController()
     const fetchAPI = async () => {
@@ -63,9 +44,7 @@ export const Market = () => {
     }
   }, [dropdown, region])
 
-  /* -------------------------------------------------------------------------- */
-  /*                                  TABLESORT                                 */
-  /* -------------------------------------------------------------------------- */
+  //Tablesort
   useEffect(() => {
     if (data) {
       const currentData = [...data]
@@ -99,18 +78,6 @@ export const Market = () => {
     })
   }
 
-  const sorted = (obj: any) =>
-    Object.keys(obj)
-      .sort()
-      .reduce((accumulator: any, key: any) => {
-        accumulator[key] = obj[key]
-
-        return accumulator
-      }, {})
-
-  /* -------------------------------------------------------------------------- */
-  /*                              RETURN COMPONENT                              */
-  /* -------------------------------------------------------------------------- */
   return (
     <div className="max-w-full p-3 md:p-5">
       <TableNav title="Marketplace">
@@ -144,15 +111,12 @@ export const Market = () => {
         ></Dropdown>
       </TableNav>
 
-      {/* {isLoading && <div>One moment while we fetch the data...</div>}
-      {error && <div>There was an error fetching the data.</div>} */}
       {data ? (
         <table className="mt-10 min-w-full max-w-full">
-          {/* //? === TABLE: HEADER COLUMNS === */}
           <thead className="cursor-pointer border-b-[1px] border-[#2B313A]">
-            <tr className="">
+            <tr>
               <th
-                className="min-w-[10rem] pb-3 text-left  md:min-w-[20rem] md:px-3 "
+                className="min-w-[10rem] pb-3 text-left md:min-w-[20rem] md:px-3 "
                 onClick={() => applySorting("name", !sorting.ascending)}
               >
                 Name
@@ -164,20 +128,20 @@ export const Market = () => {
                 Lowest Price
               </th>
               <th
-                className="table-header pb-3 text-right  md:px-3"
+                className="table-header pb-3 text-right md:px-3"
                 onClick={() => applySorting("recentPrice", !sorting.ascending)}
               >
                 Recent Price
               </th>
 
               <th
-                className="table-header pb-3 text-right  md:px-3"
+                className="table-header pb-3 text-right md:px-3"
                 onClick={() => applySorting("lowPrice", !sorting.ascending)}
               >
                 Market Trend
               </th>
               <th
-                className="table-header pb-3 pr-2 text-right  md:px-3 "
+                className="table-header pb-3 pr-2 text-right md:px-3 "
                 onClick={() => applySorting("cheapestRemaining", !sorting.ascending)}
               >
                 Quantity
@@ -185,9 +149,6 @@ export const Market = () => {
             </tr>
           </thead>
 
-          {/* -------------------------------------------------------------------------- */
-          /*                                 TABLE BODY                                 */
-          /* -------------------------------------------------------------------------- */}
           <tbody className="text-[0.825rem] tracking-tighter ">
             {data.map(
               ({ name, id, image, lowPrice, cheapestRemaining, recentPrice, shortHistoric }) => {
@@ -218,7 +179,7 @@ export const Market = () => {
                     </TableRow>
 
                     {/* Graph Trend */}
-                    <TableRow position="justify-end pl-10">
+                    <TableRow position="justify-center pl-10">
                       {
                         <Sparklines data={Object.values(sorted(shortHistoric))}>
                           <SparklinesLine
