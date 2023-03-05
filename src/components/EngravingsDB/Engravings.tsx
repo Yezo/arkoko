@@ -76,7 +76,9 @@ export const Engravings = () => {
           Card Sets
         </button> */}
       </TableNav>
-
+      {isLoading && (
+        <div className="grid place-items-center py-40">One moment while we fetch the data...</div>
+      )}
       {category === "Engravings" && engravingData ? (
         <>
           {category === "Engravings" ? (
