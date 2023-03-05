@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useRef } from "react"
 
 type Props = {
   setter: React.Dispatch<React.SetStateAction<string>>
@@ -7,9 +7,20 @@ type Props = {
 }
 
 export const Dropdown = ({ options, setter, placeholder }: Props) => {
-  const [isExpanded, setIsExpanded] = useState(false)
+  //States
+  const [isExpanded, setIsExpanded] = useState<boolean>(false)
+
+  //Close the dropdown if the user clicks anywhere outside of the menu
+  const dropdownMenu = useRef<HTMLInputElement>(null)
+  const closeOpenMenus = (e) => {
+    if (dropdownMenu.current && isExpanded && !dropdownMenu.current.contains(e.target)) {
+      setIsExpanded(false)
+    }
+  }
+  document.addEventListener("mousedown", closeOpenMenus)
+
   return (
-    <div>
+    <div ref={dropdownMenu}>
       <button
         className={`scrollbar flex min-w-[12rem] items-center  justify-between rounded bg-primary px-3 py-2 text-[0.845rem] ring-1 ring-black/[.40] ${
           isExpanded ? "bg-text text-primary transition-all" : ""
