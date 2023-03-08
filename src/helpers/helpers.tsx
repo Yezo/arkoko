@@ -31,7 +31,7 @@ export const mergeById = (localData, externalData) =>
 
 //Determine if you should buy from the Mari's Shop or from the Marketplace
 export const compareBothValues = (a: number, b: number) => {
-  return a >= b ? "MARKET" : "MARI"
+  return a >= b ? "Market" : "Mari"
 }
 
 export function handleCreateURL(arr, baseApiURL: string) {

@@ -1,4 +1,4 @@
-import { engravingType } from "../../types/typeEngraving"
+import { engravingType } from "../../../types/typeEngraving"
 
 type Props = {
   engravingData?: engravingType[]
@@ -9,8 +9,8 @@ type Props = {
 
 export const ModalButton = ({ engravingData, handleButtonClick, filterBool, category }: Props) => {
   return (
-    <div className="flex flex-col gap-2">
-      <h2 className="border-b-[1px] border-gray-700 pb-2 text-[0.85rem] font-bold tracking-wide">
+    <div className="flex flex-col gap-2 pb-4">
+      <h2 className="border-b-[1px] border-gray-700 pb-2 text-[0.85rem] tracking-wide">
         {category}
       </h2>
       <div className="mt-1 grid grid-cols-[repeat(auto-fill,minmax(13rem,1fr))] gap-1 ">

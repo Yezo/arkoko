@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react"
-import { Row } from "./Row"
 import { Hover } from "./Hover"
-export const RaidBidCalc = () => {
+import { Row } from "./Row"
+
+export const RaidBidCalculator = () => {
   const [value, setValue] = useState<number>(0)
   const [players, setPlayers] = useState<number>(8)
   const [taxedValue, setTaxedValue] = useState<number>(0)
@@ -12,7 +13,6 @@ export const RaidBidCalc = () => {
 
   const TAX_PERCENT = 0.05
 
-  //TODO include a tooltip hover for users to see whats going on
   useEffect(() => {
     //The value of the item after accounting for marketplace tax of 5%
     const tax = value ? Math.floor(value * TAX_PERCENT) : 0
@@ -35,35 +35,20 @@ export const RaidBidCalc = () => {
     setGreedyValue(greed)
   }, [value, players, taxedValue])
 
-  //Handle the amount of profit the user wishes to get from the auction bid
   function handleValue(e: any) {
     const val = e.target.value
     setValue(parseInt(val))
   }
 
   return (
-    <div className="flex flex-col gap-8 md:flex-row md:gap-2">
+    <div className="mx-auto flex max-w-xl  flex-col gap-12">
       <div className="flex w-full flex-col justify-center pr-4">
         <div className="mb-4 flex flex-col justify-center gap-4">
           <div className="flex items-center gap-2">
-            <h2 className="text-[0.85rem] font-bold tracking-wide">Number of Players</h2>
-            <Hover tooltipText="Amount of players in the raid">
-              <div className="hidden rounded-full text-text/40 hover:text-text lg:inline-flex">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <circle cx="12" cy="12" r="10"></circle>
-                  <line x1="12" y1="16" x2="12" y2="12"></line>
-                  <line x1="12" y1="8" x2="12.01" y2="8"></line>
-                </svg>
+            <h2 className="text-[0.85rem] font-bold tracking-wide ">Number of Players</h2>
+            <Hover tooltipText="The total amount of players in the raid">
+              <div className="hidden rounded-full text-text/40 transition-colors delay-150 hover:text-accent lg:inline-flex ">
+                <InfoTooltipSVG />
               </div>
             </Hover>
           </div>
@@ -92,22 +77,8 @@ export const RaidBidCalc = () => {
               Winning Bid Amount
             </label>
             <Hover tooltipText="The amount the bid winner bought the item for">
-              <div className="hidden rounded-full text-text/40 hover:text-text lg:inline-flex">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <circle cx="12" cy="12" r="10"></circle>
-                  <line x1="12" y1="16" x2="12" y2="12"></line>
-                  <line x1="12" y1="8" x2="12.01" y2="8"></line>
-                </svg>
+              <div className="hidden rounded-full text-text/40 transition-colors delay-150 hover:text-accent lg:inline-flex">
+                <InfoTooltipSVG />
               </div>
             </Hover>
           </div>
@@ -164,5 +135,25 @@ export const RaidBidCalc = () => {
         </div>
       </div>
     </div>
+  )
+}
+
+const InfoTooltipSVG = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="16"
+      height="16"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <circle cx="12" cy="12" r="10"></circle>
+      <line x1="12" y1="16" x2="12" y2="12"></line>
+      <line x1="12" y1="8" x2="12.01" y2="8"></line>
+    </svg>
   )
 }

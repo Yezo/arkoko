@@ -1,11 +1,11 @@
-import { Database } from "../components/Database/Database"
 import { Header } from "../components/Header/Header"
+import { Marketplace } from "../components/Marketplace/Marketplace"
 
-export const DatabasePage = () => {
+export const MarketplacePage = () => {
   return (
     <div className="min-h-screen bg-primary text-text">
       <Header />
-      <Database />
+      <Marketplace />
     </div>
   )
 }

@@ -1,17 +1,19 @@
 import { useState, useEffect } from "react"
+import { localDataAPI, marketAPI, mixedAPI } from "../../../types/typeOrehaCalc"
+import { ErrorMessage } from "../../Messages/ErrorMessage"
+import { LoadingMessage } from "../../Messages/LoadingMessage"
 import { OrehaInput } from "./OrehaInput"
 import { OrehaItemRow } from "./OrehaItemRow"
 import { OrehaRecipesRow } from "./OrehaRecipesRow"
 import { OrehaSalesRow } from "./OrehaSalesRow"
-import { localDataAPI, marketAPI, mixedAPI } from "../../types/typeOrehaCalc"
 import {
+  handleCreateURL,
   handleReductionFunctions,
   handleWorkbenchCount,
-  handleCreateURL,
   sortStrings,
-} from "../../helpers/helpers"
+} from "../../../helpers/helpers"
 
-export const OrehaCalc = () => {
+export const OrehaCraftingCalculator = () => {
   //States
   const [data, setData] = useState<localDataAPI[] | null>()
   const [finalData, setFinalData] = useState<mixedAPI[] | null>()
@@ -26,6 +28,7 @@ export const OrehaCalc = () => {
 
   //Constants
   const localApiURL = `https://arkoko-api.onrender.com/api/stronghold`
+  // const localApiURL = `http://localhost:8080/api/stronghold`
   const baseApiURL = `https://www.lostarkmarket.online/api/export-market-live/North America East?items=`
   const gold = "/gold.png"
   const stronghold = "/strongholdenergy.webp"
@@ -133,13 +136,9 @@ export const OrehaCalc = () => {
         />
       </div>
 
-      {isLoading && (
-        <div className="grid place-items-center py-40">One moment while we fetch the data...</div>
-      )}
+      {isLoading && <LoadingMessage />}
       {error ? (
-        <div className="grid place-items-center py-40">
-          There was an error while fetching the data.
-        </div>
+        <ErrorMessage />
       ) : (
         <div className="flex flex-col gap-4 md:flex-row">
           {data &&

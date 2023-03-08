@@ -1,18 +1,11 @@
-import { Mari } from "../components/Mari";
-import { Navigation } from "../components/Navbar/Navigation";
+import { Header } from "../components/Header/Header"
+import { MariShop } from "../components/MariShop/MariShop"
 
-export const Marishop = () => {
+export const MariShopPage = () => {
   return (
-    <div className="main-page">
-      <aside className="navigation-wrapper">
-        <Navigation />
-      </aside>
-
-      <main className="body-wrapper">
-        <div className="body-content-wrapper">
-          <Mari />
-        </div>
-      </main>
+    <div className="min-h-screen bg-primary text-text">
+      <Header />
+      <MariShop />
     </div>
-  );
-};
+  )
+}

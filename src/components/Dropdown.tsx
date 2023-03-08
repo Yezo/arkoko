@@ -22,9 +22,7 @@ export const Dropdown = ({ options, setter, placeholder }: Props) => {
   return (
     <div ref={dropdownMenu}>
       <button
-        className={`scrollbar flex min-w-[12rem] items-center  justify-between rounded bg-primary px-3 py-2 text-[0.845rem] ring-1 ring-black/[.40] ${
-          isExpanded ? "bg-text text-primary transition-all" : ""
-        }`}
+        className={`scrollbar flex min-w-[12rem] items-center  justify-between rounded bg-secondary  px-3 py-2 text-[0.845rem] shadow-md ring-1 ring-black/[.15]`}
         onClick={() => setIsExpanded(!isExpanded)}
       >
         <span>{placeholder}</span>
@@ -61,7 +59,7 @@ export const Dropdown = ({ options, setter, placeholder }: Props) => {
         </span>
       </button>
       {isExpanded && (
-        <div className="scrollbar absolute mt-[4.5px] flex min-w-[12rem] max-w-fit cursor-pointer flex-col gap-5 overflow-hidden overflow-y-scroll rounded bg-primary ring-1 ring-black/[.40]">
+        <div className="scrollbar absolute mt-[4.5px] flex min-w-[12rem] max-w-fit cursor-pointer flex-col gap-5 overflow-hidden overflow-y-scroll rounded bg-secondary ring-1 ring-black/[.15]">
           <div className="">
             {options.map((option) => (
               <div

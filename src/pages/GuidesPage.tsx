@@ -1,11 +1,11 @@
-import { Database } from "../components/Database/Database"
+import { Guides } from "../components/Guides.tsx/Guides"
 import { Header } from "../components/Header/Header"
 
-export const DatabasePage = () => {
+export const GuidesPage = () => {
   return (
     <div className="min-h-screen bg-primary text-text">
       <Header />
-      <Database />
+      <Guides />
     </div>
   )
 }

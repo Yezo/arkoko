@@ -1,3 +1,7 @@
+import React from "react"
+
+type Props = {}
+
 export const Changelog = () => {
   return (
     <div className="flex max-w-full flex-col gap-5 rounded bg-secondary p-3 text-sm md:p-5 lg:max-h-[15rem] lg:min-h-[15rem] lg:justify-center">
@@ -5,16 +9,16 @@ export const Changelog = () => {
 
       <ul className="font-numbers">
         <li>
-          <span className="font-bold">2023-02-04:</span> Added Stronghold Oreha
-          Calculator
+          <span className="font-bold">2023-03-06:</span> Updated Raid Bid Split Calculator
         </li>
         <li>
-          <span className="font-bold">2023-02-01:</span> Added Raid Bid Split
-          Calculator
+          <span className="font-bold">2023-02-04:</span> Added Stronghold Oreha Calculator
         </li>
         <li>
-          <span className="font-bold">2023-01-28:</span> Added Engravings in
-          Database
+          <span className="font-bold">2023-02-01:</span> Added Raid Bid Split Calculator
+        </li>
+        <li>
+          <span className="font-bold">2023-01-28:</span> Added Engravings in Database
         </li>
         <li>
           <span className="font-bold">2023-01-22:</span> Added Mari's Shop
@@ -24,5 +28,5 @@ export const Changelog = () => {
         </li>
       </ul>
     </div>
-  );
-};
+  )
+}
