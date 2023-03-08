@@ -1,7 +1,7 @@
 import "./App.css"
 import { Homepage } from "./pages/Homepage"
 import { Route, Routes } from "react-router-dom"
-import { MariShopPage } from "./pages/MariShop"
+import { MariShopPage } from "./pages/MariShopPage"
 import { MarketplacePage } from "./pages/MarketplacePage"
 import { DatabasePage } from "./pages/DatabasePage"
 import { ToolsPage } from "./pages/ToolsPage"
