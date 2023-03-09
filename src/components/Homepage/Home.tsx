@@ -43,6 +43,16 @@ export const Home = () => {
           </h3>
 
           <article className="space-y-4 py-4">
+            <h4 className="text-[0.95rem] font-bold tracking-tight">March 8th, 2023</h4>
+            <ul className="list-disc space-y-3 pl-4 text-sm marker:text-accent">
+              <ChangeLogListItem
+                title={"Updated the <Raid Bid Calculator> with new functionality"}
+                type={"Update"}
+              />
+            </ul>
+          </article>
+
+          <article className="space-y-4 py-4">
             <h4 className="text-[0.95rem] font-bold tracking-tight">March 7th, 2023</h4>
             <ul className="list-disc space-y-3 pl-4 text-sm marker:text-accent">
               <ChangeLogListItem
@@ -50,7 +60,7 @@ export const Home = () => {
                 type={"Update"}
               />
 
-              <ChangeLogListItem title={"Revamped the UI/UX for every page"} type={"Update"} />
+              <ChangeLogListItem title={"Revamped the UI/UX for all pages"} type={"Update"} />
               <ChangeLogListItem
                 title={"Updated <Changelog> for easier readability"}
                 type={"Update"}

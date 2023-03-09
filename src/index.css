@@ -43,3 +43,14 @@ html {
   width: 100vw;
   overflow-x: hidden;
 }
+
+/*Scrollbar color change */
+:root {
+  --scrollbarBG: #5cce71; /* green */
+  --secondary: #21292d; /* black */
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbarBG) var(--secondary);
+}

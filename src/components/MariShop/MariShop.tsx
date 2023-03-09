@@ -3,6 +3,8 @@ import { marketAPI } from "../../types/typeMarketAPI"
 import { Dropdown } from "../Dropdown"
 import { TableRow } from "../Table/TableRow"
 import { dataAPI, localAPI } from "../../types/typeMariShop"
+import { ErrorMessage } from "../Messages/ErrorMessage"
+import { LoadingMessage } from "../Messages/LoadingMessage"
 import {
   compareBothValues,
   convertBlueCrystalToGold,
@@ -10,8 +12,6 @@ import {
   handleSortArray,
   mergeById,
 } from "../../helpers/helpers"
-import { ErrorMessage } from "../Messages/ErrorMessage"
-import { LoadingMessage } from "../Messages/LoadingMessage"
 
 export const MariShop = () => {
   //States

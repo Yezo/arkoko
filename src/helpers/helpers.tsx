@@ -63,3 +63,7 @@ export function sortStrings(arr) {
     return 0
   })
 }
+
+export const formatNums = new Intl.NumberFormat("en-US", {
+  currency: "USD",
+})
