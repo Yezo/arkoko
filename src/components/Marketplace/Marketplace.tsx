@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import { Sparklines, SparklinesLine } from "react-sparklines"
 import { marketAPI } from "../../types/typeMarketAPI"
-import { sorted } from "../../helpers/helpers"
+import { handleItemRarityColor, sorted } from "../../helpers/helpers"
 import { Dropdown } from "../Dropdown"
 import { TableRow } from "../Table/TableRow"
 import { LoadingMessage } from "../Messages/LoadingMessage"
@@ -172,6 +172,7 @@ export const Marketplace = () => {
                           cheapestRemaining,
                           recentPrice,
                           shortHistoric,
+                          rarity,
                         }) => {
                           return (
                             <tr
@@ -180,7 +181,11 @@ export const Marketplace = () => {
                             >
                               {/* Item name */}
                               <TableRow position="justify-start">
-                                <span className="max-w-[35px]">
+                                <span
+                                  className={`mr-1 max-w-[35px] ring-1 ring-black/[.25] ${handleItemRarityColor(
+                                    rarity
+                                  )}`}
+                                >
                                   <img src={image} alt={name} />
                                 </span>
                                 <span>{name}</span>

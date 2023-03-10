@@ -67,3 +67,12 @@ export function sortStrings(arr) {
 export const formatNums = new Intl.NumberFormat("en-US", {
   currency: "USD",
 })
+
+export function handleItemRarityColor(rarity: number) {
+  if (rarity === 1) return "bg-gradient-to-br from-[#1e2d0b] to-[#304911]" //green
+  if (rarity === 2) return "bg-gradient-to-br from-[#112739] to-[#113d5d]" //blue
+  if (rarity === 3) return "bg-gradient-to-br from-[#2e123c] to-[#480d5d]" //purple
+  if (rarity === 4) return "bg-gradient-to-br from-[#452b06] to-[#9e5f04]" //yellow
+  if (rarity === 5) return "bg-gradient-to-br from-[#48220b] to-[#a24006]" //dark-orange
+  return "bg-gradient-to-br from-[#262626] to-[#3d3d3d]" //gray
+}

@@ -5,6 +5,7 @@ export type marketAPI = {
   gameCode: number | string
   image: string
   lowPrice: number
+  rarity: number
 }
 
 export type localAPI = {
@@ -21,4 +22,5 @@ export type dataAPI = {
   image: string
   lowPrice: number
   total: number
+  rarity: number
 }

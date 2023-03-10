@@ -44,4 +44,5 @@ export type mixedAPI = {
   strongholdEnergy: number
   strongholdXP: number
   lowPrice: number
+  rarity: number
 }

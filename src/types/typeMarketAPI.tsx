@@ -8,4 +8,5 @@ export type marketAPI = {
   cheapestRemaining: number
   recentPrice: number
   shortHistoric: unknown
+  rarity: number
 }

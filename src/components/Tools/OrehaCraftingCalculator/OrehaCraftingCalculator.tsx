@@ -8,6 +8,7 @@ import { OrehaRecipesRow } from "./OrehaRecipesRow"
 import { OrehaSalesRow } from "./OrehaSalesRow"
 import {
   handleCreateURL,
+  handleItemRarityColor,
   handleReductionFunctions,
   handleWorkbenchCount,
   sortStrings,
@@ -54,12 +55,14 @@ export const OrehaCraftingCalculator = () => {
       let matThreeId = new Set(local.map(({ materialThree }) => materialThree.id))
       let matThree = sortStrings(external.filter((o) => matThreeId.has(o.id)))
       let recipePrice = result.map(({ lowPrice }) => lowPrice)
+      let rarity = result.map(({ rarity }) => rarity)
 
       let finalArr = temp.map((item, index) => {
         let matOneCost = (matOne[0].lowPrice * item.materialOne.quantity) / 10
         let matTwoCost = (matTwo[0].lowPrice * item.materialTwo.quantity) / 10
         let matThreeCost = (matThree[0].lowPrice * item.materialThree.quantity) / 100
         let mainPrice = recipePrice[index]
+        let itemRarity = rarity[index]
 
         let newItem = {
           ...item,
@@ -68,6 +71,7 @@ export const OrehaCraftingCalculator = () => {
           matThreeCost: matThreeCost,
           profit: item.totalCost - (matOneCost + matTwoCost + matThreeCost),
           lowPrice: mainPrice,
+          rarity: itemRarity,
         }
         return newItem
       })
@@ -162,12 +166,17 @@ export const OrehaCraftingCalculator = () => {
                 strongholdEnergy,
                 lowPrice,
                 strongholdXP,
+                rarity,
               }) => {
                 return (
                   <div className=" basis-1/2 rounded tracking-tighter" key={id}>
                     <div className="flex flex-col gap-2">
                       <section className=" flex flex-col gap-[0.35rem] rounded bg-primary p-5 ring-1 ring-black/[.50]">
-                        <div className="flex items-center justify-center">
+                        <div
+                          className={`mb-1 flex items-center justify-center  py-1 ring-1 ring-black/[.25] ${handleItemRarityColor(
+                            rarity
+                          )} `}
+                        >
                           <img src={imgURL} className="max-h-[40px] max-w-[50px]" />
                         </div>
                         <div className="flex items-center justify-between">
