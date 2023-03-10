@@ -1,21 +1,22 @@
 import { useState, useEffect } from "react"
 import { engravingType } from "../../../types/typeEngraving"
-import { EngravingModal } from "./EngravingModal"
-import { ModalButton } from "./ModalButton"
+import { runesType } from "../../../types/typeRunes"
 import { ErrorMessage } from "../../Messages/ErrorMessage"
 import { LoadingMessage } from "../../Messages/LoadingMessage"
+import { ModalButton } from "./ModalButton"
+import { RuneModal } from "./RuneModal"
 
-export const Engravings = () => {
+export const Runes = () => {
   //States
-  const [engravingData, setEngravingData] = useState<engravingType[] | null>(null)
+  const [runeData, setRuneData] = useState<runesType[] | null>(null)
   const [isClicked, setIsClicked] = useState(false)
   const [modal, setModal] = useState<string | null>("")
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [error, setError] = useState<boolean>(false)
 
   //Constants
-  const localApiURL = `https://arkoko-api.onrender.com/api/engravings`
-  // const localApiURL = `http://localhost:8080/api/engravings`
+  //   const localApiURL = `https://arkoko-api.onrender.com/api/engravings`
+  const localApiURL = `http://localhost:8080/api/runes`
 
   //Fetching data
   useEffect(() => {
@@ -26,7 +27,7 @@ export const Engravings = () => {
       try {
         const data = await fetch(localApiURL, { signal: controller.signal })
         const jsonData = await data.json()
-        setEngravingData(jsonData)
+        setRuneData(jsonData)
       } catch (error) {
         controller.signal.aborted ? console.log("Aborted") : setError(true)
       } finally {
@@ -52,25 +53,13 @@ export const Engravings = () => {
     <>
       {isLoading && <LoadingMessage />}
       {error && <ErrorMessage />}
-      {isClicked && engravingData && !error ? (
-        <EngravingModal engravingData={engravingData} modal={modal} />
-      ) : null}
-      {engravingData && !error && !isLoading ? (
-        <>
-          <ModalButton
-            engravingData={engravingData}
-            handleButtonClick={handleButtonClick}
-            filterBool={false}
-            category="General Engravings"
-          ></ModalButton>
-
-          <ModalButton
-            engravingData={engravingData}
-            handleButtonClick={handleButtonClick}
-            filterBool={true}
-            category="Class Engravings"
-          ></ModalButton>
-        </>
+      {isClicked && runeData && !error ? <RuneModal runeData={runeData} modal={modal} /> : null}
+      {runeData && !error && !isLoading ? (
+        <ModalButton
+          category={"Skill Runes"}
+          runeData={runeData}
+          handleButtonClick={handleButtonClick}
+        />
       ) : null}
     </>
   )

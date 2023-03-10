@@ -10,7 +10,7 @@ export const EngravingModal = ({ engravingData, modal }: Props) => {
   return (
     <>
       {ENGRAVING && (
-        <div className="mb-4 flex flex-row gap-2 font-primary ">
+        <div className="mb-4 flex flex-col gap-2 font-primary sm:flex-row ">
           {/* LEFT SIDE CONTAINER */}
           <div className="flex min-h-[9rem] basis-1/5 flex-col items-center justify-center gap-3  rounded-md bg-primary p-3 tracking-tight shadow-md ring-1 ring-black/[.30]">
             {/* LEFT SIDE IMAGE */}

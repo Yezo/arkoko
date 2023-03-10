@@ -42,6 +42,18 @@ export const Home = () => {
             Changelog
           </h3>
 
+          {/* March 10th */}
+          <article className="space-y-4 py-4">
+            <h4 className="text-[0.95rem] font-bold tracking-tight">March 10th, 2023</h4>
+            <ul className="list-disc space-y-3 pl-4 text-sm marker:text-accent">
+              <ChangeLogListItem
+                title={"Added <Runes> section to the <Database> page"}
+                type={"New"}
+              />
+            </ul>
+          </article>
+
+          {/* March 8th */}
           <article className="space-y-4 py-4">
             <h4 className="text-[0.95rem] font-bold tracking-tight">March 8th, 2023</h4>
             <ul className="list-disc space-y-3 pl-4 text-sm marker:text-accent">
@@ -52,6 +64,7 @@ export const Home = () => {
             </ul>
           </article>
 
+          {/* March 7th */}
           <article className="space-y-4 py-4">
             <h4 className="text-[0.95rem] font-bold tracking-tight">March 7th, 2023</h4>
             <ul className="list-disc space-y-3 pl-4 text-sm marker:text-accent">
@@ -77,6 +90,7 @@ export const Home = () => {
             </ul>
           </article>
 
+          {/* March 6th */}
           <article className="space-y-4 py-4">
             <h4 className="text-[0.95rem] font-bold tracking-tight">March 6th, 2023</h4>
             <ul className="list-disc space-y-3 pl-4 text-sm marker:text-accent">

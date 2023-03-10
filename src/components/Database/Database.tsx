@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import { UnderConstruction } from "../Messages/ConstructionMessage"
 import { Engravings } from "./Engravings/Engravings"
+import { Runes } from "./Runes/Runes"
 
 export const Database = () => {
   //States
@@ -50,7 +51,7 @@ export const Database = () => {
 
         <div className="mt-4 min-h-[33rem] rounded-lg bg-secondary p-6 shadow-md ring-1 ring-black/[.15] sm:min-h-[42rem] lg:min-h-[47rem]">
           {category === "Engravings" ? <Engravings /> : null}
-          {category === "Runes" ? <UnderConstruction category={category} /> : null}
+          {category === "Runes" ? <Runes /> : null}
           {category === "Card Sets" ? <UnderConstruction category={category} /> : null}
           {category === "Collectibles" ? <UnderConstruction category={category} /> : null}
         </div>
