@@ -150,203 +150,192 @@ export const MariShop = () => {
         </div>
 
         <div className="mt-4 min-h-[33rem] rounded-lg bg-secondary p-6 shadow-md ring-1 ring-black/[.15] sm:min-h-[42rem] lg:min-h-[47rem]">
-          {error ? (
-            <ErrorMessage />
-          ) : (
+          {isLoading && <LoadingMessage />}
+          {error && <ErrorMessage />}
+          {finalData && !error && !isLoading ? (
             <>
-              {isLoading ? (
-                <LoadingMessage />
-              ) : localDataAPI && finalData && !error ? (
-                <>
-                  <div className="flex flex-col gap-4 font-primary text-[0.825rem] tracking-tighter sm:hidden ">
-                    {finalData.map(
-                      ({ name, id, image, bluecrystal, quantity, lowPrice, total, rarity }) => {
-                        return (
-                          <div
-                            key={id}
-                            className="ring-1- space-y-4 rounded bg-[#2D2D3B] px-8 py-4 text-sm shadow-md ring-black/10"
+              <div className="flex flex-col gap-4 font-primary text-[0.825rem] tracking-tighter sm:hidden ">
+                {finalData.map(
+                  ({ name, id, image, bluecrystal, quantity, lowPrice, total, rarity }) => {
+                    return (
+                      <div
+                        key={id}
+                        className="ring-1- space-y-4 rounded bg-[#2D2D3B] px-8 py-4 text-sm shadow-md ring-black/10"
+                      >
+                        <div className="flex items-center justify-between text-right text-lg font-bold">
+                          <span
+                            className={`mr-1 max-w-[35px] ring-1 ring-black/[.25] ${handleItemRarityColor(
+                              rarity
+                            )}`}
                           >
-                            <div className="flex items-center justify-between text-right text-lg font-bold">
-                              <span
-                                className={`mr-1 max-w-[35px] ring-1 ring-black/[.25] ${handleItemRarityColor(
-                                  rarity
-                                )}`}
-                              >
-                                <img src={image} alt={name} />
-                              </span>
-                              <span className="max-w-[10rem]">{name}</span>
-                            </div>
+                            <img src={image} alt={name} />
+                          </span>
+                          <span className="max-w-[10rem]">{name}</span>
+                        </div>
 
-                            <div className="flex items-center justify-between">
-                              <span className="font-semibold">Quantity</span>
-                              <span className="flex items-center gap-1 font-numbers">
-                                {quantity}
-                              </span>
-                            </div>
+                        <div className="flex items-center justify-between">
+                          <span className="font-semibold">Quantity</span>
+                          <span className="flex items-center gap-1 font-numbers">{quantity}</span>
+                        </div>
 
-                            <div className="flex items-center justify-between">
-                              <span className="font-semibold">Blue Crystal</span>
-                              <span className="flex items-center gap-1 font-numbers">
-                                {bluecrystal}
-                                <img src={blue} alt="blue crystal" className="max-w-[20px]" />
-                              </span>
-                            </div>
+                        <div className="flex items-center justify-between">
+                          <span className="font-semibold">Blue Crystal</span>
+                          <span className="flex items-center gap-1 font-numbers">
+                            {bluecrystal}
+                            <img src={blue} alt="blue crystal" className="max-w-[20px]" />
+                          </span>
+                        </div>
 
-                            <div className="flex items-center justify-between">
-                              <span className="font-semibold">Crystal Value</span>
-                              <span className="flex items-center gap-1 font-numbers">
-                                {new Intl.NumberFormat().format(
-                                  convertBlueCrystalToGold(bluecrystal, crystal)
-                                )}
-                                <img src={gold} alt="gold" className="max-w-[20px]" />
-                              </span>
-                            </div>
+                        <div className="flex items-center justify-between">
+                          <span className="font-semibold">Crystal Value</span>
+                          <span className="flex items-center gap-1 font-numbers">
+                            {new Intl.NumberFormat().format(
+                              convertBlueCrystalToGold(bluecrystal, crystal)
+                            )}
+                            <img src={gold} alt="gold" className="max-w-[20px]" />
+                          </span>
+                        </div>
 
-                            <div className="flex items-center justify-between">
-                              <span className="font-semibold">Market Value</span>
-                              <span className="flex items-center gap-1 font-numbers">
-                                {total}
-                                <img src={gold} alt="gold" className="max-w-[20px]" />
-                              </span>
-                            </div>
-                            <div className="flex items-center justify-between">
-                              <span className="font-semibold">Buy From?</span>
-                              <span className="flex items-center">
-                                <button
-                                  className={`font-bold tracking-wide  ${
-                                    compareBothValues(
-                                      convertBlueCrystalToGold(bluecrystal, crystal),
-                                      lowPrice * quantity
-                                    ) === "Market"
-                                      ? "text-green-500"
-                                      : "text-red-500"
-                                  }`}
-                                >
-                                  {compareBothValues(
-                                    convertBlueCrystalToGold(bluecrystal, crystal),
-                                    lowPrice * quantity
-                                  )}
-                                </button>
-                              </span>
-                            </div>
-                          </div>
-                        )
-                      }
-                    )}
-                  </div>
-                  <table className="hidden min-w-full max-w-full sm:table">
-                    <thead className="cursor-pointer border-b-[1px] border-text/10">
-                      <tr>
-                        <th
-                          className="py-3 pl-2 text-left md:px-3"
-                          onClick={() => applySorting("name", !sorting.ascending)}
-                        >
-                          Name
-                        </th>
-                        <th
-                          className="text-right  md:px-3"
-                          onClick={() => applySorting("lowPrice", !sorting.ascending)}
-                        >
-                          Price
-                        </th>
-                        <th
-                          className="pr-2 text-right md:px-3"
-                          onClick={() => applySorting("recentPrice", !sorting.ascending)}
-                        >
-                          Crystal Value
-                        </th>
-                        <th
-                          className="text-right md:px-3 "
-                          onClick={() => applySorting("lowPrice", !sorting.ascending)}
-                        >
-                          Market Value
-                        </th>
-                        <th
-                          className=" pr-3 text-center md:px-3"
-                          onClick={() => applySorting("cheapestRemaining", !sorting.ascending)}
-                        >
-                          Buy
-                        </th>
-                      </tr>
-                    </thead>
-
-                    <tbody className="text-[0.825rem] tracking-tighter ">
-                      {finalData.map(
-                        ({ name, id, image, bluecrystal, quantity, lowPrice, total, rarity }) => {
-                          return (
-                            <tr
-                              key={id}
-                              className="border-b-[1px] border-text/10  hover:bg-primary"
+                        <div className="flex items-center justify-between">
+                          <span className="font-semibold">Market Value</span>
+                          <span className="flex items-center gap-1 font-numbers">
+                            {total}
+                            <img src={gold} alt="gold" className="max-w-[20px]" />
+                          </span>
+                        </div>
+                        <div className="flex items-center justify-between">
+                          <span className="font-semibold">Buy From?</span>
+                          <span className="flex items-center">
+                            <button
+                              className={`font-bold tracking-wide  ${
+                                compareBothValues(
+                                  convertBlueCrystalToGold(bluecrystal, crystal),
+                                  lowPrice * quantity
+                                ) === "Market"
+                                  ? "text-green-500"
+                                  : "text-red-500"
+                              }`}
                             >
-                              {/* Item name */}
-                              <TableRow position="justify-start">
-                                <span
-                                  className={`mr-1 max-w-[35px] ring-1 ring-black/[.25] ${handleItemRarityColor(
-                                    rarity
-                                  )}`}
-                                >
-                                  <img src={image} alt={name} />
-                                </span>
-                                <span className="flex items-center gap-1">
-                                  {name}
-                                  <span className="text-[0.7rem] text-gray-600">x{quantity}</span>
-                                </span>
-                              </TableRow>
+                              {compareBothValues(
+                                convertBlueCrystalToGold(bluecrystal, crystal),
+                                lowPrice * quantity
+                              )}
+                            </button>
+                          </span>
+                        </div>
+                      </div>
+                    )
+                  }
+                )}
+              </div>
+              <table className="hidden min-w-full max-w-full sm:table">
+                <thead className="cursor-pointer border-b-[1px] border-text/10">
+                  <tr>
+                    <th
+                      className="py-3 pl-2 text-left md:px-3"
+                      onClick={() => applySorting("name", !sorting.ascending)}
+                    >
+                      Name
+                    </th>
+                    <th
+                      className="text-right  md:px-3"
+                      onClick={() => applySorting("lowPrice", !sorting.ascending)}
+                    >
+                      Price
+                    </th>
+                    <th
+                      className="pr-2 text-right md:px-3"
+                      onClick={() => applySorting("recentPrice", !sorting.ascending)}
+                    >
+                      Crystal Value
+                    </th>
+                    <th
+                      className="text-right md:px-3 "
+                      onClick={() => applySorting("lowPrice", !sorting.ascending)}
+                    >
+                      Market Value
+                    </th>
+                    <th
+                      className=" pr-3 text-center md:px-3"
+                      onClick={() => applySorting("cheapestRemaining", !sorting.ascending)}
+                    >
+                      Buy
+                    </th>
+                  </tr>
+                </thead>
 
-                              {/* Price */}
-                              <TableRow position="justify-end ">
-                                <span className="font-numbers text-[0.9rem] font-medium">
-                                  {bluecrystal}
-                                </span>
-                                <img src={blue} alt="blue" className="max-w-[20px]" />
-                              </TableRow>
+                <tbody className="text-[0.825rem] tracking-tighter ">
+                  {finalData.map(
+                    ({ name, id, image, bluecrystal, quantity, lowPrice, total, rarity }) => {
+                      return (
+                        <tr key={id} className="border-b-[1px] border-text/10  hover:bg-primary">
+                          {/* Item name */}
+                          <TableRow position="justify-start">
+                            <span
+                              className={`mr-1 max-w-[35px] ring-1 ring-black/[.25] ${handleItemRarityColor(
+                                rarity
+                              )}`}
+                            >
+                              <img src={image} alt={name} />
+                            </span>
+                            <span className="flex items-center gap-1">
+                              {name}
+                              <span className="text-[0.7rem] text-gray-600">x{quantity}</span>
+                            </span>
+                          </TableRow>
 
-                              {/* Crystal Value */}
-                              <TableRow position="justify-end ">
-                                <span className="font-numbers text-[0.9rem] font-medium">
-                                  {new Intl.NumberFormat().format(
-                                    convertBlueCrystalToGold(bluecrystal, crystal)
-                                  )}
-                                </span>
-                                <img src={gold} alt="gold" className="max-w-[25px]" />
-                              </TableRow>
+                          {/* Price */}
+                          <TableRow position="justify-end ">
+                            <span className="font-numbers text-[0.9rem] font-medium">
+                              {bluecrystal}
+                            </span>
+                            <img src={blue} alt="blue" className="max-w-[20px]" />
+                          </TableRow>
 
-                              {/* Market Price */}
-                              <TableRow position="justify-end">
-                                <span className="font-numbers text-[0.9rem] font-medium">
-                                  {new Intl.NumberFormat().format(total)}
-                                </span>
-                                <img src={gold} alt="gold" className="max-w-[25px]" />
-                              </TableRow>
+                          {/* Crystal Value */}
+                          <TableRow position="justify-end ">
+                            <span className="font-numbers text-[0.9rem] font-medium">
+                              {new Intl.NumberFormat().format(
+                                convertBlueCrystalToGold(bluecrystal, crystal)
+                              )}
+                            </span>
+                            <img src={gold} alt="gold" className="max-w-[25px]" />
+                          </TableRow>
 
-                              {/* Buy from Mari or Market */}
-                              <TableRow position="justify-center">
-                                <button
-                                  className={`min-w-[5.5rem] rounded bg-primary px-3 py-1 font-bold ring-1 ring-black/[.25] ${
-                                    compareBothValues(
-                                      convertBlueCrystalToGold(bluecrystal, crystal),
-                                      lowPrice * quantity
-                                    ) === "Market"
-                                      ? "bg-green-800"
-                                      : "bg-red-900"
-                                  }`}
-                                >
-                                  {compareBothValues(
-                                    convertBlueCrystalToGold(bluecrystal, crystal),
-                                    lowPrice * quantity
-                                  )}
-                                </button>
-                              </TableRow>
-                            </tr>
-                          )
-                        }
-                      )}
-                    </tbody>
-                  </table>
-                </>
-              ) : null}
+                          {/* Market Price */}
+                          <TableRow position="justify-end">
+                            <span className="font-numbers text-[0.9rem] font-medium">
+                              {new Intl.NumberFormat().format(total)}
+                            </span>
+                            <img src={gold} alt="gold" className="max-w-[25px]" />
+                          </TableRow>
+
+                          {/* Buy from Mari or Market */}
+                          <TableRow position="justify-center">
+                            <button
+                              className={`min-w-[5.5rem] rounded bg-primary px-3 py-1 font-bold ring-1 ring-black/[.25] ${
+                                compareBothValues(
+                                  convertBlueCrystalToGold(bluecrystal, crystal),
+                                  lowPrice * quantity
+                                ) === "Market"
+                                  ? "bg-green-800"
+                                  : "bg-red-900"
+                              }`}
+                            >
+                              {compareBothValues(
+                                convertBlueCrystalToGold(bluecrystal, crystal),
+                                lowPrice * quantity
+                              )}
+                            </button>
+                          </TableRow>
+                        </tr>
+                      )
+                    }
+                  )}
+                </tbody>
+              </table>
             </>
-          )}
+          ) : null}
         </div>
       </div>
     </main>

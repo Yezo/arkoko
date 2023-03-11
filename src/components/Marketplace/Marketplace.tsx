@@ -117,129 +117,120 @@ export const Marketplace = () => {
         </div>
 
         <div className="mt-4 min-h-[33rem] rounded-lg bg-secondary p-6 shadow-md ring-1 ring-black/[.15] sm:min-h-[42rem] lg:min-h-[47rem]">
-          {error ? (
-            <ErrorMessage />
-          ) : (
+          {isLoading && <LoadingMessage />}
+          {error && <ErrorMessage />}
+          {data && !error && !isLoading ? (
             <>
-              {isLoading ? (
-                <LoadingMessage />
-              ) : data && !error ? (
-                <>
-                  <table className="min-w-full max-w-full ">
-                    <thead className="cursor-pointer border-b-[1px] border-text/10">
-                      <tr>
-                        <th
-                          className="py-3 pl-2 text-left md:px-3"
-                          onClick={() => applySorting("name", !sorting.ascending)}
-                        >
-                          Name
-                        </th>
-                        <th
-                          className="text-right md:px-3 "
-                          onClick={() => applySorting("lowPrice", !sorting.ascending)}
-                        >
-                          Lowest Price
-                        </th>
-                        <th
-                          className="pr-2 text-right md:px-3 "
-                          onClick={() => applySorting("recentPrice", !sorting.ascending)}
-                        >
-                          Recent Price
-                        </th>
+              <table className="min-w-full max-w-full ">
+                <thead className="cursor-pointer border-b-[1px] border-text/10">
+                  <tr>
+                    <th
+                      className="py-3 pl-2 text-left md:px-3"
+                      onClick={() => applySorting("name", !sorting.ascending)}
+                    >
+                      Name
+                    </th>
+                    <th
+                      className="text-right md:px-3 "
+                      onClick={() => applySorting("lowPrice", !sorting.ascending)}
+                    >
+                      Lowest Price
+                    </th>
+                    <th
+                      className="pr-2 text-right md:px-3 "
+                      onClick={() => applySorting("recentPrice", !sorting.ascending)}
+                    >
+                      Recent Price
+                    </th>
 
-                        <th
-                          className="hidden sm:table-cell md:px-3 "
-                          onClick={() => applySorting("lowPrice", !sorting.ascending)}
-                        >
-                          Market Trend
-                        </th>
-                        <th
-                          className="hidden pr-3 text-right md:table-cell md:px-3 "
-                          onClick={() => applySorting("cheapestRemaining", !sorting.ascending)}
-                        >
-                          Quantity
-                        </th>
-                      </tr>
-                    </thead>
+                    <th
+                      className="hidden sm:table-cell md:px-3 "
+                      onClick={() => applySorting("lowPrice", !sorting.ascending)}
+                    >
+                      Market Trend
+                    </th>
+                    <th
+                      className="hidden pr-3 text-right md:table-cell md:px-3 "
+                      onClick={() => applySorting("cheapestRemaining", !sorting.ascending)}
+                    >
+                      Quantity
+                    </th>
+                  </tr>
+                </thead>
 
-                    <tbody className="text-[0.825rem] tracking-tighter ">
-                      {data.map(
-                        ({
-                          name,
-                          id,
-                          image,
-                          lowPrice,
-                          cheapestRemaining,
-                          recentPrice,
-                          shortHistoric,
-                          rarity,
-                        }) => {
-                          return (
-                            <tr
-                              key={id}
-                              className="border-b-[1px] border-text/10  hover:bg-primary"
+                <tbody className="text-[0.825rem] tracking-tighter ">
+                  {data.map(
+                    ({
+                      name,
+                      id,
+                      image,
+                      lowPrice,
+                      cheapestRemaining,
+                      recentPrice,
+                      shortHistoric,
+                      rarity,
+                    }) => {
+                      return (
+                        <tr key={id} className="border-b-[1px] border-text/10  hover:bg-primary">
+                          {/* Item name */}
+                          <TableRow position="justify-start">
+                            <span
+                              className={`mr-1 max-w-[35px] ring-1 ring-black/[.25] ${handleItemRarityColor(
+                                rarity
+                              )}`}
                             >
-                              {/* Item name */}
-                              <TableRow position="justify-start">
-                                <span
-                                  className={`mr-1 max-w-[35px] ring-1 ring-black/[.25] ${handleItemRarityColor(
-                                    rarity
-                                  )}`}
-                                >
-                                  <img src={image} alt={name} />
-                                </span>
-                                <span>{name}</span>
-                              </TableRow>
+                              <img src={image} alt={name} />
+                            </span>
+                            <span>{name}</span>
+                          </TableRow>
 
-                              {/* Lowest Price */}
-                              <TableRow position="justify-end ">
-                                <span className="font-numbers text-[0.9rem] font-medium">
-                                  {new Intl.NumberFormat().format(lowPrice)}
-                                </span>
-                                <img src={gold} alt="gold" />
-                              </TableRow>
+                          {/* Lowest Price */}
+                          <TableRow position="justify-end ">
+                            <span className="font-numbers text-[0.9rem] font-medium">
+                              {new Intl.NumberFormat().format(lowPrice)}
+                            </span>
+                            <img src={gold} alt="gold" />
+                          </TableRow>
 
-                              {/* Recent Price*/}
-                              <TableRow position="justify-end">
-                                <span className="font-numbers text-[0.9rem] font-medium">
-                                  {new Intl.NumberFormat().format(recentPrice)}
-                                </span>
-                                <img src={gold} alt="gold" />
-                              </TableRow>
+                          {/* Recent Price*/}
+                          <TableRow position="justify-end">
+                            <span className="font-numbers text-[0.9rem] font-medium">
+                              {new Intl.NumberFormat().format(recentPrice)}
+                            </span>
+                            <img src={gold} alt="gold" />
+                          </TableRow>
 
-                              {/* Graph Trend */}
-                              <TableRow position="justify-center hidden sm:block">
-                                {
-                                  <Sparklines data={Object.values(sorted(shortHistoric))}>
-                                    <SparklinesLine
-                                      style={{
-                                        stroke: "#b7c2d0",
-                                        strokeWidth: "5",
-                                        strokeOpacity: "0.8",
-                                        fill: "#627897",
-                                        fillOpacity: "0.7",
-                                      }}
-                                    />
-                                  </Sparklines>
-                                }
-                              </TableRow>
+                          {/* Graph Trend */}
+                          <TableRow position="justify-center hidden sm:block">
+                            {
+                              <Sparklines data={Object.values(sorted(shortHistoric))}>
+                                <SparklinesLine
+                                  style={{
+                                    stroke: "#b7c2d0",
+                                    strokeWidth: "5",
+                                    strokeOpacity: "0.8",
+                                    fill: "#627897",
+                                    fillOpacity: "0.7",
+                                  }}
+                                />
+                              </Sparklines>
+                            }
+                          </TableRow>
 
-                              {/* Quantity */}
-                              <TableRow position="justify-end  hidden md:flex">
-                                <span className="font-numbers text-[0.9rem] font-medium">
-                                  {new Intl.NumberFormat().format(cheapestRemaining)}
-                                </span>
-                              </TableRow>
-                            </tr>
-                          )
-                        }
-                      )}
-                    </tbody>
-                  </table>
-                </>
-              ) : null}
+                          {/* Quantity */}
+                          <TableRow position="justify-end  hidden md:flex">
+                            <span className="font-numbers text-[0.9rem] font-medium">
+                              {new Intl.NumberFormat().format(cheapestRemaining)}
+                            </span>
+                          </TableRow>
+                        </tr>
+                      )
+                    }
+                  )}
+                </tbody>
+              </table>
             </>
-          )}
+          ) : null}
         </div>
       </div>
     </main>
