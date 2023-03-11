@@ -1,19 +1,15 @@
 type Props = {
-  title: string;
-  categorySetter: React.Dispatch<React.SetStateAction<string>>;
-};
+  categorySetter: (e: React.MouseEvent<Element>) => void
+  children?: React.ReactNode
+}
 
-export const Button = ({ title, categorySetter }: Props) => {
-  function handleCategorySelect(e: React.MouseEvent<Element>) {
-    const target = e.target as HTMLButtonElement;
-    target.textContent && categorySetter(target.textContent);
-  }
+export const Button = ({ children, categorySetter }: Props) => {
   return (
     <button
-      className="flex min-w-[5rem] items-center justify-center rounded bg-primary px-3 py-2 text-[0.845rem] ring-1 ring-black/[.40] transition-all hover:bg-text hover:text-primary"
-      onClick={handleCategorySelect}
+      className="flex min-w-[5.5rem] items-center justify-center rounded bg-secondary  px-2 py-2 text-[0.8rem] ring-1 ring-black/[.40] transition-colors hover:bg-text hover:text-primary"
+      onClick={categorySetter}
     >
-      {title}
+      {children}
     </button>
-  );
-};
+  )
+}

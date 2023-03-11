@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { Button } from "../Button"
 import { UnderConstruction } from "../Messages/ConstructionMessage"
 import { OrehaCraftingCalculator } from "./OrehaCraftingCalculator/OrehaCraftingCalculator"
 import { RaidBidCalculator } from "./RaidBidCalculator/RaidBidCalculator"
@@ -22,18 +23,8 @@ export const Tools = () => {
         <div className=" flex flex-col items-center gap-5 sm:flex-row sm:justify-between sm:border-l-4 sm:border-accent">
           <h2 className=" pl-2 text-2xl tracking-tight">{category}</h2>
           <div className="flex gap-2">
-            <button
-              className="flex min-w-[5.5rem] items-center justify-center rounded bg-secondary  px-2 py-2 text-[0.8rem] ring-1 ring-black/[.40]"
-              onClick={handleCategorySelect}
-            >
-              Auction Bid Calculator
-            </button>
-            <button
-              className="flex min-w-[5.5rem] items-center justify-center rounded bg-secondary  px-2 py-2 text-[0.8rem] ring-1 ring-black/[.40]"
-              onClick={handleCategorySelect}
-            >
-              Oreha Crafting Calculator
-            </button>
+            <Button categorySetter={handleCategorySelect}>Auction Bid Calculator</Button>
+            <Button categorySetter={handleCategorySelect}>Oreha Crafting Calculator</Button>
           </div>
         </div>
 

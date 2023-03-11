@@ -1,4 +1,5 @@
-import { useState, useEffect } from "react"
+import { useState } from "react"
+import { Button } from "../Button"
 import { UnderConstruction } from "../Messages/ConstructionMessage"
 import { Engravings } from "./Engravings/Engravings"
 import { Runes } from "./Runes/Runes"
@@ -18,34 +19,14 @@ export const Database = () => {
   }
   return (
     <main className="w-full overflow-y-hidden bg-primary pt-5 font-primary text-sm">
-      <div className="mx-auto max-w-5xl rounded  p-4">
-        <div className=" flex flex-col items-center gap-5 sm:flex-row sm:justify-between sm:border-l-4 sm:border-accent">
+      <div className="mx-auto max-w-5xl rounded p-4">
+        <div className="flex flex-col items-center gap-5 sm:flex-row sm:justify-between sm:border-l-4 sm:border-accent">
           <h2 className=" pl-2 text-2xl tracking-tight">{category}</h2>
           <div className="flex gap-2">
-            <button
-              className="flex min-w-[5.5rem] items-center justify-center rounded bg-secondary  px-2 py-2 text-[0.8rem] ring-1 ring-black/[.40]"
-              onClick={handleCategorySelect}
-            >
-              Engravings
-            </button>
-            <button
-              className="flex min-w-[5.5rem] items-center justify-center rounded bg-secondary  px-2 py-2 text-[0.8rem] ring-1 ring-black/[.40]"
-              onClick={handleCategorySelect}
-            >
-              Runes
-            </button>
-            <button
-              className="flex min-w-[5.5rem] items-center justify-center rounded bg-secondary  px-2 py-2  text-[0.8rem] ring-1 ring-black/[.40]"
-              onClick={handleCategorySelect}
-            >
-              Card Sets
-            </button>
-            <button
-              className="flex min-w-[5.5rem] items-center justify-center rounded bg-secondary  px-2 py-2  text-[0.8rem] ring-1 ring-black/[.40]"
-              onClick={handleCategorySelect}
-            >
-              Collectibles
-            </button>
+            <Button categorySetter={handleCategorySelect}>Engravings</Button>
+            <Button categorySetter={handleCategorySelect}>Runes</Button>
+            <Button categorySetter={handleCategorySelect}>Card Sets</Button>
+            <Button categorySetter={handleCategorySelect}>Collectibles</Button>
           </div>
         </div>
 

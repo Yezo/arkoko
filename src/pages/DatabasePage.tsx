@@ -1,5 +1,5 @@
-import { Database } from "../components/Database/Database"
 import { Header } from "../components/Header/Header"
+import { Database } from "../components/Database/Database"
 
 export const DatabasePage = () => {
   return (
