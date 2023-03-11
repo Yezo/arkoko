@@ -15,8 +15,8 @@ export const Runes = () => {
   const [error, setError] = useState<boolean>(false)
 
   //Constants
-  //   const localApiURL = `https://arkoko-api.onrender.com/api/engravings`
-  const localApiURL = `http://localhost:8080/api/runes`
+  const localApiURL = `https://arkoko-api.onrender.com/api/runes`
+  // const localApiURL = `http://localhost:8080/api/runes`
 
   //Fetching data
   useEffect(() => {
