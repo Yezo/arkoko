@@ -12,17 +12,20 @@ Arkoko is an application that provides a variety of different tools for the onli
 
 ## Technologies
 
-- React
+- HTML & CSS
+- Javascript
+- React.js
 - TypeScript
-- Node & Express
+- Node.js & Express
 - MongoDB & Mongoose
 - Tailwind CSS
-- React Router
+- React-Router
+- Vite
 
 ## Links
 
 https://arkoko.vercel.app/
 
-## Credits
+## API Credits
 
 https://www.lostarkmarket.online

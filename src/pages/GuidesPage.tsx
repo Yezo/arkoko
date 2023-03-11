@@ -1,5 +1,5 @@
-import { Guides } from "../components/Guides.tsx/Guides"
 import { Header } from "../components/Header/Header"
+import { Guides } from "../components/Guides.tsx/Guides"
 
 export const GuidesPage = () => {
   return (
