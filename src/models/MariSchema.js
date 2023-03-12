@@ -1,5 +1,5 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
+const mongoose = require("mongoose")
+const Schema = mongoose.Schema
 
 const mariSchema = new Schema(
   {
@@ -17,6 +17,6 @@ const mariSchema = new Schema(
     },
   },
   { timestamps: true }
-);
+)
 
-module.exports = mongoose.model("MariShop", mariSchema);
+module.exports = mongoose.model("MariShop", mariSchema)
