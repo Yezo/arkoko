@@ -1,5 +1,5 @@
 const MariShop = require("./src/models/MariSchema")
-const Engraving = require("./src//models/EngravingSchema")
+const Engraving = require("./src/models/EngravingSchema")
 const Rune = require("./src/models/RuneSchema")
 const Stronghold = require("./src/models/StrongholdSchema")
 
