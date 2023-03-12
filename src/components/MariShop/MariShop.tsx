@@ -239,28 +239,23 @@ export const MariShop = () => {
                     </th>
                     <th
                       className="text-right  md:px-3"
-                      onClick={() => applySorting("lowPrice", !sorting.ascending)}
+                      onClick={() => applySorting("bluecrystal", !sorting.ascending)}
                     >
                       Price
                     </th>
                     <th
                       className="pr-2 text-right md:px-3"
-                      onClick={() => applySorting("recentPrice", !sorting.ascending)}
+                      onClick={() => applySorting("bluecrystal", !sorting.ascending)}
                     >
                       Crystal Value
                     </th>
                     <th
                       className="text-right md:px-3 "
-                      onClick={() => applySorting("lowPrice", !sorting.ascending)}
+                      onClick={() => applySorting("total", !sorting.ascending)}
                     >
                       Market Value
                     </th>
-                    <th
-                      className=" pr-3 text-center md:px-3"
-                      onClick={() => applySorting("cheapestRemaining", !sorting.ascending)}
-                    >
-                      Buy
-                    </th>
+                    <th className=" cursor-default pr-3 text-center md:px-3">Buy</th>
                   </tr>
                 </thead>
 
@@ -276,7 +271,7 @@ export const MariShop = () => {
                                 rarity
                               )}`}
                             >
-                              <img src={image} alt={name} />
+                              <img src={image} alt={name} className="select-none" />
                             </span>
                             <span className="flex items-center gap-1">
                               {name}
@@ -289,7 +284,7 @@ export const MariShop = () => {
                             <span className="font-numbers text-[0.9rem] font-medium">
                               {bluecrystal}
                             </span>
-                            <img src={blue} alt="blue" className="max-w-[20px]" />
+                            <img src={blue} alt="blue" className="max-w-[20px] select-none" />
                           </TableRow>
 
                           {/* Crystal Value */}
@@ -299,7 +294,7 @@ export const MariShop = () => {
                                 convertBlueCrystalToGold(bluecrystal, crystal)
                               )}
                             </span>
-                            <img src={gold} alt="gold" className="max-w-[25px]" />
+                            <img src={gold} alt="gold" className="max-w-[25px] select-none" />
                           </TableRow>
 
                           {/* Market Price */}
@@ -307,13 +302,13 @@ export const MariShop = () => {
                             <span className="font-numbers text-[0.9rem] font-medium">
                               {new Intl.NumberFormat().format(total)}
                             </span>
-                            <img src={gold} alt="gold" className="max-w-[25px]" />
+                            <img src={gold} alt="gold" className="max-w-[25px] select-none" />
                           </TableRow>
 
                           {/* Buy from Mari or Market */}
                           <TableRow position="justify-center">
-                            <button
-                              className={`min-w-[5.5rem] rounded bg-primary px-3 py-1 font-bold ring-1 ring-black/[.25] ${
+                            <div
+                              className={`  inline-flex min-w-[5.5rem] select-none items-center justify-center rounded bg-primary px-4 py-1 font-bold shadow-sm outline-none ring-1 ring-black/[.25] ${
                                 compareBothValues(
                                   convertBlueCrystalToGold(bluecrystal, crystal),
                                   lowPrice * quantity
@@ -326,7 +321,7 @@ export const MariShop = () => {
                                 convertBlueCrystalToGold(bluecrystal, crystal),
                                 lowPrice * quantity
                               )}
-                            </button>
+                            </div>
                           </TableRow>
                         </tr>
                       )

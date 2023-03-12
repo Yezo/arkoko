@@ -179,7 +179,7 @@ export const Marketplace = () => {
                                 rarity
                               )}`}
                             >
-                              <img src={image} alt={name} />
+                              <img src={image} alt={name} className="select-none" />
                             </span>
                             <span>{name}</span>
                           </TableRow>
@@ -189,7 +189,7 @@ export const Marketplace = () => {
                             <span className="font-numbers text-[0.9rem] font-medium">
                               {new Intl.NumberFormat().format(lowPrice)}
                             </span>
-                            <img src={gold} alt="gold" />
+                            <img src={gold} alt="gold" className="select-none" />
                           </TableRow>
 
                           {/* Recent Price*/}
@@ -197,7 +197,7 @@ export const Marketplace = () => {
                             <span className="font-numbers text-[0.9rem] font-medium">
                               {new Intl.NumberFormat().format(recentPrice)}
                             </span>
-                            <img src={gold} alt="gold" />
+                            <img src={gold} alt="gold" className="select-none" />
                           </TableRow>
 
                           {/* Graph Trend */}

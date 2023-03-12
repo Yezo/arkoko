@@ -27,16 +27,12 @@ export const ModalButton = ({ runeData, handleButtonClick, category }: Props) =>
               .map(({ name, _id, imageURL }) => {
                 return (
                   <div
-                    className="flex cursor-pointer justify-around gap-3 rounded-md bg-primary px-3 py-[0.35rem] text-xs  tracking-tight ring-1 ring-black/[.35]"
+                    className="inline-flex cursor-pointer justify-around gap-3 rounded-md bg-primary px-3 py-[0.35rem] text-xs tracking-tight shadow-sm ring-1 ring-black/[.35] transition-all hover:bg-text hover:italic hover:text-primary hover:ring-2"
                     onClick={handleButtonClick}
                     key={_id}
                     id={name}
                   >
-                    <img
-                      src={imageURL}
-                      className="max-w-[30px] rounded-full ring-1 ring-black/[.35]"
-                      id={name}
-                    ></img>
+                    <img src={imageURL} className="max-w-[35px] select-none" id={name}></img>
                     <div
                       className="flex h-full w-full flex-col flex-wrap items-start justify-center text-[0.75rem]"
                       id={name}
