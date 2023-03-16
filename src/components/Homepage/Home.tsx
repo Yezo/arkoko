@@ -4,9 +4,9 @@ import { Introduction } from "./Introduction/Introduction"
 
 export const Home = () => {
   return (
-    <main className="w-full overflow-y-hidden bg-primary pt-5 font-primary text-sm">
+    <main className="w-full overflow-y-hidden bg-primary font-primary text-sm">
       <div className="mx-auto max-w-5xl rounded p-4">
-        <div className="flex flex-col gap-4 md:flex-row-reverse">
+        <div className="flex flex-col gap-8 md:flex-row-reverse">
           <Banner
             imageURL="https://www.playlostark.com/en-us/news/articles/the-art-of-war-release-notes"
             path="/artofwar.jpg"

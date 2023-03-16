@@ -1,67 +1,75 @@
 export const Changelog = () => {
   return (
-    <section className="mt-4 flex flex-col gap-3 divide-y divide-text/10 rounded-lg bg-secondary p-5 shadow-md ring-1 ring-black/[.15] ">
-      <h2 className="border-l-4 border-accent px-2 font-secondary text-lg font-bold">Changelog</h2>
+    <>
+      <h2 className="mt-8 border-l-4 border-accent pl-2 text-2xl tracking-tight">Changelog</h2>
 
-      {/* March 10th */}
-      <article className="space-y-4 py-4">
-        <h4 className="text-[0.95rem] font-bold tracking-tight">March 10th, 2023</h4>
-        <ul className="list-disc space-y-3 pl-4 text-sm marker:text-accent">
-          <ChangeLogListItem title={"Added <Runes> section to the <Database> page"} type={"New"} />
-        </ul>
-      </article>
+      <section className="mt-4 flex flex-col gap-3 divide-y divide-text/10 rounded-lg bg-secondary p-5 shadow-md ring-1 ring-black/[.15] ">
+        {/* March 10th */}
+        <article className="space-y-4 py-4">
+          <h4 className="text-[0.95rem] font-bold tracking-tight">March 10th, 2023</h4>
+          <ul className="list-disc space-y-3 pl-4 text-sm marker:text-accent">
+            <ChangeLogListItem
+              title={"Added <Runes> section to the <Database> page"}
+              type={"New"}
+            />
+          </ul>
+        </article>
 
-      {/* March 8th */}
-      <article className="space-y-4 py-4">
-        <h4 className="text-[0.95rem] font-bold tracking-tight">March 8th, 2023</h4>
-        <ul className="list-disc space-y-3 pl-4 text-sm marker:text-accent">
-          <ChangeLogListItem
-            title={"Updated the <Raid Bid Calculator> with new functionality"}
-            type={"Update"}
-          />
-        </ul>
-      </article>
+        {/* March 8th */}
+        <article className="space-y-4 py-4">
+          <h4 className="text-[0.95rem] font-bold tracking-tight">March 8th, 2023</h4>
+          <ul className="list-disc space-y-3 pl-4 text-sm marker:text-accent">
+            <ChangeLogListItem
+              title={"Updated the <Raid Bid Calculator> with new functionality"}
+              type={"Update"}
+            />
+          </ul>
+        </article>
 
-      {/* March 7th */}
-      <article className="space-y-4 py-4">
-        <h4 className="text-[0.95rem] font-bold tracking-tight">March 7th, 2023</h4>
-        <ul className="list-disc space-y-3 pl-4 text-sm marker:text-accent">
-          <ChangeLogListItem
-            title={"Revamped the entirety of Arkoko's infrastructure"}
-            type={"Update"}
-          />
+        {/* March 7th */}
+        <article className="space-y-4 py-4">
+          <h4 className="text-[0.95rem] font-bold tracking-tight">March 7th, 2023</h4>
+          <ul className="list-disc space-y-3 pl-4 text-sm marker:text-accent">
+            <ChangeLogListItem
+              title={"Revamped the entirety of Arkoko's infrastructure"}
+              type={"Update"}
+            />
 
-          <ChangeLogListItem title={"Revamped the UI/UX for all pages"} type={"Update"} />
-          <ChangeLogListItem title={"Updated <Changelog> for easier readability"} type={"Update"} />
-          <ChangeLogListItem
-            title={"Added <Guides> section for future in-game guides"}
-            type={"New"}
-          />
-          <ChangeLogListItem
-            title={"Added loading and error messages for all pages"}
-            type={"New"}
-          />
-          <ChangeLogListItem title={"Removed <Features> section"} type={"Removed"} />
-        </ul>
-      </article>
+            <ChangeLogListItem title={"Revamped the UI/UX for all pages"} type={"Update"} />
+            <ChangeLogListItem
+              title={"Updated <Changelog> for easier readability"}
+              type={"Update"}
+            />
+            <ChangeLogListItem
+              title={"Added <Guides> section for future in-game guides"}
+              type={"New"}
+            />
+            <ChangeLogListItem
+              title={"Added loading and error messages for all pages"}
+              type={"New"}
+            />
+            <ChangeLogListItem title={"Removed <Features> section"} type={"Removed"} />
+          </ul>
+        </article>
 
-      {/* March 6th */}
-      <article className="space-y-4 py-4">
-        <h4 className="text-[0.95rem] font-bold tracking-tight">March 6th, 2023</h4>
-        <ul className="list-disc space-y-3 pl-4 text-sm marker:text-accent">
-          <ChangeLogListItem
-            title={"Updated the <Raid Bid Calculator> for easier readability and use"}
-            type={"Update"}
-          />
-          <ChangeLogListItem
-            title={
-              "Added functionality for users to close a dropdown menu when clicking outside of it"
-            }
-            type={"New"}
-          />
-        </ul>
-      </article>
-    </section>
+        {/* March 6th */}
+        <article className="space-y-4 py-4">
+          <h4 className="text-[0.95rem] font-bold tracking-tight">March 6th, 2023</h4>
+          <ul className="list-disc space-y-3 pl-4 text-sm marker:text-accent">
+            <ChangeLogListItem
+              title={"Updated the <Raid Bid Calculator> for easier readability and use"}
+              type={"Update"}
+            />
+            <ChangeLogListItem
+              title={
+                "Added functionality for users to close a dropdown menu when clicking outside of it"
+              }
+              type={"New"}
+            />
+          </ul>
+        </article>
+      </section>
+    </>
   )
 }
 
