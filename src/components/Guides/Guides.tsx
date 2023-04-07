@@ -1,9 +1,7 @@
 import { useState } from "react"
 import { UnderConstruction } from "../Messages/ConstructionMessage"
 
-type Props = {}
-
-export const Guides = (props: Props) => {
+export const Guides = () => {
   //States
   const [isClicked, setIsClicked] = useState(false)
   const [category, setCategory] = useState<string | null>("Guides")
