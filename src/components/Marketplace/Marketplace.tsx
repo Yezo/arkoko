@@ -1,78 +1,72 @@
+//Imports - Hooks
 import { useState, useEffect } from "react"
-import { Sparklines, SparklinesLine } from "react-sparklines"
-import { marketAPI } from "../../types/typeMarketAPI"
-import { handleItemRarityColor, sorted } from "../../helpers/helpers"
+import useFetch from "../../hooks/useFetch"
+
+//Imports - Components
 import { Dropdown } from "../Dropdown"
 import { TableRow } from "../Table/TableRow"
 import { LoadingMessage } from "../Messages/LoadingMessage"
 import { ErrorMessage } from "../Messages/ErrorMessage"
 
+//Imports - Libs
+import { handleItemRarityColor, sorted } from "../../helpers/helpers"
+import { Sparklines, SparklinesLine } from "react-sparklines"
+
+//Imports - Types
+import { marketAPI } from "../../types/typeMarketAPI"
+import { BodyHeader } from "../Layout/BodyHeader"
+import { BodyContainer } from "../Layout/BodyMainContainer"
+import { MainContainer } from "../Layout/MainContainer"
+
 export const Marketplace = () => {
   //States
-  const [data, setData] = useState<marketAPI[] | null>(null)
-  const [isLoading, setIsLoading] = useState<boolean>(false)
-  const [error, setError] = useState<boolean>(false)
+  const [marketData, setMarketData] = useState<marketAPI[] | null>(null)
   const [dropdown, setDropdown] = useState("Enhancement Material")
   const [region, setRegion] = useState("North America East")
   const [sorting, setSorting] = useState({
     key: "name",
     ascending: true,
   })
-
   //Constants
   const gold = "/gold.png"
   const marketURL = `https://www.lostarkmarket.online/api/export-market-live/${region}?category=${dropdown}`
+  const { data: data, loading, error } = useFetch(marketURL)
 
-  //Fetching data
+  //UseEffect
   useEffect(() => {
-    const controller = new AbortController()
-    const fetchAPI = async () => {
-      setError(false)
-      setIsLoading(true)
-      try {
-        const data = await fetch(marketURL, { signal: controller.signal })
-        const jsonData = await data.json()
-        setData(jsonData)
-      } catch (error) {
-        controller.signal.aborted ? console.log("Aborted the fetch") : setError(true)
-      } finally {
-        setIsLoading(false)
-      }
+    if (data) {
+      setMarketData(data)
+    } else {
+      setMarketData(null)
     }
-    fetchAPI()
-    return () => {
-      controller.abort()
-    }
-  }, [dropdown, region])
+  }, [data])
 
   //Tablesort
   useEffect(() => {
-    if (data) {
-      const currentData = [...data]
+    if (marketData) {
+      //Prevent mutation
+      const currentData = [...marketData]
 
       const sortedHeaders = currentData.sort((a, b) => {
         let fa = a[sorting.key]
         let fb = b[sorting.key]
 
+        ///Use this sorting if data type is a string
         if (typeof fa === "string") {
-          if (fa < fb) {
-            return -1
-          }
-          if (fa > fb) {
-            return 1
-          }
-          return 0
+          if (fa < fb) return -1
+          if (fa > fb) return 1
         }
+        //Use this sorting if data type is a number
         if (typeof fa === "number") {
-          return a[sorting.key] - b[sorting.key]
+          return fa - fb
         } else return 0
       })
 
-      setData(sorting.ascending ? sortedHeaders : sortedHeaders.reverse())
+      setMarketData(sorting.ascending ? sortedHeaders : sortedHeaders.reverse())
     }
   }, [sorting.ascending, sorting.key])
 
-  function applySorting(key: any, ascending: any) {
+  function applySorting(key: string, ascending: boolean) {
     setSorting({
       key: key,
       ascending: ascending,
@@ -80,86 +74,83 @@ export const Marketplace = () => {
   }
 
   return (
-    <main className="w-full overflow-y-hidden bg-primary pt-5 font-primary text-sm">
-      <div className="mx-auto max-w-5xl rounded  p-4">
-        <div className=" flex flex-col items-center gap-5 sm:flex-row sm:justify-between sm:border-l-4 sm:border-accent">
-          <h2 className=" pl-2 text-2xl tracking-tight">Marketplace</h2>
-          <div className="flex max-w-fit flex-col gap-4 sm:flex-row sm:items-center sm:justify-between ">
-            <Dropdown
-              options={[
-                "Enhancement Material",
-                "Combat Supplies",
-                "Cooking",
-                "Trader",
-                "Adventurer's Tome",
-                "Sailing",
-                "Pets",
-                "Mount",
-                "Gem Chest",
-              ]}
-              setter={setDropdown}
-              placeholder={dropdown}
-              key="1"
-            ></Dropdown>
-            <Dropdown
-              options={[
-                "North America East",
-                "North America West",
-                "Europe Central",
-                "Europe West",
-                "South America",
-              ]}
-              setter={setRegion}
-              placeholder={region}
-              key="2"
-            ></Dropdown>
-          </div>
-        </div>
+    <MainContainer>
+      <BodyHeader title="Marketplace">
+        <Dropdown
+          options={[
+            "Enhancement Material",
+            "Combat Supplies",
+            "Cooking",
+            "Trader",
+            "Adventurer's Tome",
+            "Sailing",
+            "Pets",
+            "Mount",
+            "Gem Chest",
+          ]}
+          setter={setDropdown}
+          placeholder={dropdown}
+          key="1"
+        ></Dropdown>
+        <Dropdown
+          options={[
+            "North America East",
+            "North America West",
+            "Europe Central",
+            "Europe West",
+            "South America",
+          ]}
+          setter={setRegion}
+          placeholder={region}
+          key="2"
+        ></Dropdown>
+      </BodyHeader>
 
-        <div className="mt-4 min-h-[33rem] rounded-lg bg-secondary p-6 shadow-md ring-1 ring-black/[.15] sm:min-h-[42rem] lg:min-h-[47rem]">
-          {isLoading && <LoadingMessage />}
-          {error && <ErrorMessage />}
-          {data && !error && !isLoading ? (
-            <>
-              <table className="min-w-full max-w-full ">
-                <thead className="cursor-pointer border-b-[1px] border-text/10">
-                  <tr>
-                    <th
-                      className="py-3 pl-2 text-left md:px-3"
-                      onClick={() => applySorting("name", !sorting.ascending)}
-                    >
-                      Name
-                    </th>
-                    <th
-                      className="text-right md:px-3 "
-                      onClick={() => applySorting("lowPrice", !sorting.ascending)}
-                    >
-                      Lowest Price
-                    </th>
-                    <th
-                      className="pr-2 text-right md:px-3 "
-                      onClick={() => applySorting("recentPrice", !sorting.ascending)}
-                    >
-                      Recent Price
-                    </th>
+      <BodyContainer>
+        {loading && <LoadingMessage />}
+        {error && <ErrorMessage />}
+        {data && !error && !loading ? (
+          <>
+            <table className="min-w-full max-w-full ">
+              <thead className="cursor-pointer border-b-[1px] border-text/10">
+                <tr>
+                  <th
+                    className="select-none py-3 pl-2 text-left md:px-3"
+                    onClick={() => applySorting("name", !sorting.ascending)}
+                  >
+                    Name
+                  </th>
+                  <th
+                    className="select-none text-right md:px-3"
+                    onClick={() => applySorting("lowPrice", !sorting.ascending)}
+                  >
+                    Lowest Price
+                  </th>
+                  <th
+                    className="select-none pr-2 text-right md:px-3"
+                    onClick={() => applySorting("recentPrice", !sorting.ascending)}
+                  >
+                    Recent Price
+                  </th>
 
-                    <th
-                      className="hidden sm:table-cell md:px-3 "
-                      onClick={() => applySorting("lowPrice", !sorting.ascending)}
-                    >
-                      Market Trend
-                    </th>
-                    <th
-                      className="hidden pr-3 text-right md:table-cell md:px-3 "
-                      onClick={() => applySorting("cheapestRemaining", !sorting.ascending)}
-                    >
-                      Quantity
-                    </th>
-                  </tr>
-                </thead>
+                  <th
+                    className="hidden select-none sm:table-cell md:px-3"
+                    onClick={() => applySorting("lowPrice", !sorting.ascending)}
+                  >
+                    Market Trend
+                  </th>
+                  <th
+                    className="hidden select-none pr-3 text-right md:table-cell md:px-3"
+                    onClick={() => applySorting("cheapestRemaining", !sorting.ascending)}
+                  >
+                    Quantity
+                  </th>
+                </tr>
+              </thead>
 
-                <tbody className="text-[0.825rem] tracking-tighter ">
-                  {data.map(
+              <tbody className="text-[0.825rem] tracking-tighter ">
+                {marketData &&
+                  marketData.map(
                     ({
                       name,
                       id,
@@ -227,12 +218,11 @@ export const Marketplace = () => {
                       )
                     }
                   )}
-                </tbody>
-              </table>
-            </>
-          ) : null}
-        </div>
-      </div>
-    </main>
+              </tbody>
+            </table>
+          </>
+        ) : null}
+      </BodyContainer>
+    </MainContainer>
   )
 }
