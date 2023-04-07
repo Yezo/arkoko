@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react"
-import { engravingType } from "../../../types/typeEngraving"
 import { runesType } from "../../../types/typeRunes"
 import { ErrorMessage } from "../../Messages/ErrorMessage"
 import { LoadingMessage } from "../../Messages/LoadingMessage"
