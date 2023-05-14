@@ -1,7 +1,7 @@
 //Uncomment the extra text if you downgrade the API hosting plan back to free-tier
 export const LoadingMessage = () => {
   return (
-    <div className="flex min-h-[40rem] select-none flex-col items-center justify-center gap-8  opacity-80">
+    <div className="flex min-h-[40rem] select-none flex-col items-center justify-center gap-8  bg-secondary opacity-80">
       <LoadingSpinnerSVG />
       <div className="flex flex-col items-center gap-1 text-center ">
         {/* <p>One moment while we fetch the data...</p>
