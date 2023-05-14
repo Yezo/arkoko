@@ -59,7 +59,7 @@ export const Dropdown = ({ options, setter, placeholder }: Props) => {
         </span>
       </button>
       {isExpanded && (
-        <div className="scrollbar absolute mt-[4.5px] flex min-w-[12rem] max-w-fit cursor-pointer flex-col gap-5 overflow-hidden overflow-y-scroll rounded bg-secondary ring-1 ring-black/[.15]">
+        <div className="scrollbar absolute z-10 mt-[4.5px] flex min-w-[12rem] max-w-fit cursor-pointer flex-col gap-5 overflow-hidden overflow-y-scroll rounded bg-secondary ring-1 ring-black/[.15]">
           <div className="">
             {options.map((option) => (
               <div

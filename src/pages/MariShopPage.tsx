@@ -1,5 +1,5 @@
 import { Header } from "../components/Header/Header"
-import { MariShop } from "../components/MariShop/MariShop"
+import MariShop from "../components/MariShop/MariShop"
 
 export const MariShopPage = () => {
   return (

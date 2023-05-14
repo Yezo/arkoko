@@ -35,3 +35,67 @@ html {
   scrollbar-width: thin;
   scrollbar-color: var(--scrollbarBG) var(--secondary);
 }
+
+.p-datatable-tbody {
+  background: #5cce71;
+}
+
+.p-datatable .p-datatable-tbody > tr {
+  background: #1c1f26;
+  color: #e2e2e2;
+  font-size: 0.825rem;
+  letter-spacing: -0.05em;
+  font-family: "Be Vietnam Pro";
+}
+
+.p-datatable .p-datatable-thead > tr > th,
+.p-sortable-column,
+.p-sortable-column:hover,
+.p-datatable-thead > tr > th:hover {
+  background: #1c1f26;
+  color: #e2e2e2;
+  font-size: 0.875rem;
+  letter-spacing: -0.05em;
+  font-family: "Be Vietnam Pro";
+}
+
+.p-paginator,
+.p-component,
+.p-paginator-bottom {
+  background: #1c1f26;
+  color: #e2e2e2;
+  font-size: 0.825rem;
+  letter-spacing: -0.05em;
+  font-family: "Be Vietnam Pro";
+}
+
+.p-highlight,
+.p-icon {
+  background: #1c1f26 !important;
+  color: #5cce71 !important;
+}
+
+.p-datatable .p-sortable-column:not(.p-highlight):not(.p-sortable-disabled):hover {
+  background: #1c1f26;
+  color: #e2e2e2;
+}
+
+.p-datatable .p-datatable-tbody > tr > td {
+  text-align: left;
+  border: 1px solid rgb(226 226 226 / 0.1);
+  border-width: 0 0 1px 0;
+  padding: 1rem 1rem;
+}
+
+.p-datatable .p-datatable-thead > tr > th {
+  border: 1px solid rgb(226 226 226 / 0.1);
+  border-width: 0 0 1px 0;
+  padding: 1rem 1rem;
+}
+
+.p-datatable.p-datatable-hoverable-rows
+  .p-datatable-tbody
+  > tr:not(.p-highlight):not(.p-datatable-emptymessage):hover {
+  background: #15181d;
+  color: #e2e2e2;
+}
