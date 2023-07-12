@@ -31,7 +31,7 @@ export const Database = () => {
 
       <BodyContainer>
         {category === "Engravings" ? <Engravings /> : null}
-        {category === "Runes" ? <Runes /> : null}
+        {category === "Runes" ? <UnderConstruction category={category} /> : null}
         {category === "Card Sets" ? <UnderConstruction category={category} /> : null}
         {category === "Collectibles" ? <UnderConstruction category={category} /> : null}
       </BodyContainer>
