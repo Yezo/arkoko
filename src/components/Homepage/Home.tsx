@@ -8,9 +8,9 @@ export const Home = () => {
     <MainContainer>
       <div className="flex flex-col gap-8 md:flex-row-reverse">
         <Banner
-          imageURL="https://www.playlostark.com/en-us/news/articles/the-art-of-war-release-notes"
-          path="/artofwar.jpg"
-          description="Artist - Art of War Patch"
+          imageURL="https://www.playlostark.com/en-us/news/articles/july-2023-release-notes"
+          path="/julyupdate.png"
+          description="July Update Patch"
         />
         <Introduction />
       </div>
