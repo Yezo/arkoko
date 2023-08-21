@@ -24,7 +24,7 @@ export const Tools = () => {
     <MainContainer>
       <BodyHeader title={category}>
         <Button categorySetter={handleCategorySelect}>Auction Bid Calculator</Button>
-        <Button categorySetter={handleCategorySelect}>Oreha Crafting Calculator</Button>
+        {/* <Button categorySetter={handleCategorySelect}>Oreha Crafting Calculator</Button> */}
       </BodyHeader>
 
       <BodyContainer>
