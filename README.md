@@ -1,38 +1,37 @@
 <!-- https://github.com/tpacun/Best-README-Template -->
-<div id="top"></div>
+<!-- IMAGE LINK -->
+<div align="center"> <img src="https://kvo.vercel.app/arkoko.png" data-canonical-src="https://kvo.vercel.app/arkoko.png" height="420" /></div>
 
-<!-- TABLE OF CONTENTS -->
-<details>
-  <summary>Table of Contents</summary>
-  <ol>
-    <li><a href="#arkoko">Arkoko</a></li>
-    <li><a href="#built-with">Built With</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#links">Links</a></li>
-    <li><a href="#acknowledgements">Acknowledgements</a></li>
-  </ol>
-</details>
+<!-- HEADER INFORMATION -->
+<br />
+<div align="center"><strong>Arkoko</strong></div>
+<div align="center">A fan-made platform for "Lost Ark".<br />Marketplace, database, and community tools.</div>
+<br />
+<div align="center">
+<a href="https://arkoko.vercel.app/">Website</a> 
+<span><strong> · </strong></span>
+<a href="https://github.com/Yezo/arkoko">GitHub</a> 
+<span><strong>·</strong></span>
+<a href="https://kvo.vercel.app/">Developer</a>
+</div>
 
+<!-- PROJECT INFORMATION -->
+## Introduction
 
-<!-- ABOUT THE PROJECT -->
-## Arkoko
+Arkoko aims to help players minimize daily micro-decisions through data-driven analytics.
+It aims to create an intuitive experience that maximizes players' enjoyment. 
+By reducing the mental effort involving complex calculations and optimizing strategies, 
+I enable gamers to focus on what truly matters — the thrill of playing the game that they enjoy.
 
-https://arkoko.vercel.app/
-
+## Features
 - Marketplace
 - Mari's Shop
 - Database
 - Auction Bid Calculator
 - Oreha Crafting Calculator
 
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-
-
 ## Built With
 
-- HTML
-- CSS
 - React.js
 - Javascript
 - TypeScript
@@ -41,13 +40,10 @@ https://arkoko.vercel.app/
 - MongoDB
 - Mongoose
 - TailwindCSS
+- PrimeReact Tables
 - React-Router
 - Vite
 
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-
-<!-- ROADMAP -->
 ## Roadmap
 
 - [x] Changelog
@@ -61,26 +57,9 @@ https://arkoko.vercel.app/
 - [ ] Rapport Calculator
 - [ ] Income Calculator
 
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-
-
-<!-- CONTACT -->
-## Links 
-
-Kevin Vo - kvo.codes@gmail.com
-
-Project Repository: [https://github.com/Yezo/arkoko](https://github.com/Yezo/arkoko)
-
-<p align="right">(<a href="#top">back to top</a>)</p>
-
-<!-- ACKNOWLEDGEMENTS -->
 ## Acknowledgements
 
-
-External API: [https://www.lostarkmarket.online](https://www.lostarkmarket.online)
-
-<p align="right">(<a href="#top">back to top</a>)</p>
+- [https://www.lostarkmarket.online](https://www.lostarkmarket.online)
 
 
 
